@@ -4,34 +4,40 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 
+// Import all images
+import connexionImg from "@assets/Page de connexion (authentification) _1764013469430.png";
+import dashboardImg from "@assets/Tableau de bord_1764013469432.png";
+import bailleursImg from "@assets/Page Bailleurs_1764013469429.png";
+import contratsImg from "@assets/Page Contrats_1764013469430.png";
+import locatairesImg from "@assets/Page Locataires_1764013469430.png";
+import paiementsImg from "@assets/Page Paiements_1764013469430.png";
+import produitsImg from "@assets/Page Produits_1764013469431.png";
+import loyersImg from "@assets/Loyer impayés_1764013469429.png";
+import filtresImg from "@assets/Filtre Avancés _1764013469423.png";
+import comptabiliteImg from "@assets/Rapport Financiers-Comptabilite(anuelle)_1764013469431.png";
+import immeubleImg from "@assets/Rapports Financiers - Rapport Par immeuble_1764013469431.png";
+import bailleursReportImg from "@assets/Rapports financiers- Bilan Bailleurs_1764013469431.png";
+import agenceImg from "@assets/Rapports Financiers-Bian Agence(Mensuel)_1764013469432.png";
+
 export function ConfortImmoSection() {
   const project = portfolioData.projects.find((p) => p.id === "confort-immo");
 
   if (!project) return null;
 
-  // Using require to load images from attached_assets
-  const getImageUrl = (filename: string) => {
-    try {
-      return require(`../../attached_assets/${filename}`);
-    } catch {
-      return "";
-    }
-  };
-
   const screenshots = [
-    { src: getImageUrl("Page de connexion (authentification) _1764013469430.png"), alt: "Page de connexion Confort Immo Archi" },
-    { src: getImageUrl("Tableau de bord_1764013469432.png"), alt: "Tableau de bord Confort Immo Archi" },
-    { src: getImageUrl("Page Bailleurs_1764013469429.png"), alt: "Gestion des bailleurs" },
-    { src: getImageUrl("Page Contrats_1764013469430.png"), alt: "Gestion des contrats" },
-    { src: getImageUrl("Page Locataires_1764013469430.png"), alt: "Gestion des locataires" },
-    { src: getImageUrl("Page Paiements_1764013469430.png"), alt: "Gestion des paiements" },
-    { src: getImageUrl("Page Produits_1764013469431.png"), alt: "Gestion des produits" },
-    { src: getImageUrl("Loyer impayés_1764013469429.png"), alt: "Suivi des loyers impayés" },
-    { src: getImageUrl("Filtre Avancés _1764013469423.png"), alt: "Filtres avancés" },
-    { src: getImageUrl("Rapport Financiers-Comptabilite(anuelle)_1764013469431.png"), alt: "Rapports comptabilité" },
-    { src: getImageUrl("Rapports Financiers - Rapport Par immeuble_1764013469431.png"), alt: "Rapport par immeuble" },
-    { src: getImageUrl("Rapports financiers- Bilan Bailleurs_1764013469431.png"), alt: "Bilan bailleurs" },
-    { src: getImageUrl("Rapports Financiers-Bian Agence(Mensuel)_1764013469432.png"), alt: "Bilan agence" },
+    { src: connexionImg, alt: "Page de connexion Confort Immo Archi" },
+    { src: dashboardImg, alt: "Tableau de bord Confort Immo Archi" },
+    { src: bailleursImg, alt: "Gestion des bailleurs" },
+    { src: contratsImg, alt: "Gestion des contrats" },
+    { src: locatairesImg, alt: "Gestion des locataires" },
+    { src: paiementsImg, alt: "Gestion des paiements" },
+    { src: produitsImg, alt: "Gestion des produits" },
+    { src: loyersImg, alt: "Suivi des loyers impayés" },
+    { src: filtresImg, alt: "Filtres avancés" },
+    { src: comptabiliteImg, alt: "Rapports comptabilité" },
+    { src: immeubleImg, alt: "Rapport par immeuble" },
+    { src: bailleursReportImg, alt: "Bilan bailleurs" },
+    { src: agenceImg, alt: "Bilan agence" },
   ].filter(s => s.src);
 
   return (
