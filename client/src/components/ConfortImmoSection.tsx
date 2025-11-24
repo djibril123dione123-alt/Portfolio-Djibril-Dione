@@ -9,21 +9,30 @@ export function ConfortImmoSection() {
 
   if (!project) return null;
 
+  // Using require to load images from attached_assets
+  const getImageUrl = (filename: string) => {
+    try {
+      return require(`../../attached_assets/${filename}`);
+    } catch {
+      return "";
+    }
+  };
+
   const screenshots = [
-    { src: "/confort-connexion.png", alt: "Page de connexion Confort Immo Archi" },
-    { src: "/confort-dashboard.png", alt: "Tableau de bord Confort Immo Archi" },
-    { src: "/confort-bailleurs.png", alt: "Gestion des bailleurs" },
-    { src: "/confort-contrats.png", alt: "Gestion des contrats" },
-    { src: "/confort-locataires.png", alt: "Gestion des locataires" },
-    { src: "/confort-paiements.png", alt: "Gestion des paiements" },
-    { src: "/confort-produits.png", alt: "Gestion des produits" },
-    { src: "/confort-loyers-impays.png", alt: "Suivi des loyers impayés" },
-    { src: "/confort-filtres.png", alt: "Filtres avancés" },
-    { src: "/confort-rapport-comptabilite.png", alt: "Rapports comptabilité" },
-    { src: "/confort-rapport-immeuble.png", alt: "Rapport par immeuble" },
-    { src: "/confort-rapport-bailleurs.png", alt: "Bilan bailleurs" },
-    { src: "/confort-rapport-agence.png", alt: "Bilan agence" },
-  ];
+    { src: getImageUrl("Page de connexion (authentification) _1764013469430.png"), alt: "Page de connexion Confort Immo Archi" },
+    { src: getImageUrl("Tableau de bord_1764013469432.png"), alt: "Tableau de bord Confort Immo Archi" },
+    { src: getImageUrl("Page Bailleurs_1764013469429.png"), alt: "Gestion des bailleurs" },
+    { src: getImageUrl("Page Contrats_1764013469430.png"), alt: "Gestion des contrats" },
+    { src: getImageUrl("Page Locataires_1764013469430.png"), alt: "Gestion des locataires" },
+    { src: getImageUrl("Page Paiements_1764013469430.png"), alt: "Gestion des paiements" },
+    { src: getImageUrl("Page Produits_1764013469431.png"), alt: "Gestion des produits" },
+    { src: getImageUrl("Loyer impayés_1764013469429.png"), alt: "Suivi des loyers impayés" },
+    { src: getImageUrl("Filtre Avancés _1764013469423.png"), alt: "Filtres avancés" },
+    { src: getImageUrl("Rapport Financiers-Comptabilite(anuelle)_1764013469431.png"), alt: "Rapports comptabilité" },
+    { src: getImageUrl("Rapports Financiers - Rapport Par immeuble_1764013469431.png"), alt: "Rapport par immeuble" },
+    { src: getImageUrl("Rapports financiers- Bilan Bailleurs_1764013469431.png"), alt: "Bilan bailleurs" },
+    { src: getImageUrl("Rapports Financiers-Bian Agence(Mensuel)_1764013469432.png"), alt: "Bilan agence" },
+  ].filter(s => s.src);
 
   return (
     <section id="confort-immo" className="py-24 bg-muted/20" data-testid="section-confort-immo">
