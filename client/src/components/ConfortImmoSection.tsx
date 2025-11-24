@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 
 // Import all images
+import logoImg from "@assets/image_1764014096713.png";
 import connexionImg from "@assets/Page de connexion (authentification) _1764013469430.png";
 import dashboardImg from "@assets/Tableau de bord_1764013469432.png";
 import bailleursImg from "@assets/Page Bailleurs_1764013469429.png";
@@ -45,18 +46,30 @@ export function ConfortImmoSection() {
       <div className="container mx-auto px-6">
         {/* En-tête */}
         <div className="mb-16">
-          <div className="flex flex-col gap-2 mb-6">
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-              Cas d'étude
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-display font-bold text-foreground">
-              {project.title}
-            </h2>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-8 items-start mb-12">
+            <div>
+              <div className="flex flex-col gap-2 mb-6">
+                <span className="text-sm font-semibold text-primary uppercase tracking-wider">
+                  Cas d'étude
+                </span>
+                <h2 className="text-4xl lg:text-5xl font-display font-bold text-foreground">
+                  {project.title}
+                </h2>
+              </div>
 
-          <p className="text-lg text-muted-foreground max-w-3xl mb-8 leading-relaxed">
-            {project.description}
-          </p>
+              <p className="text-lg text-muted-foreground max-w-3xl mb-8 leading-relaxed">
+                {project.description}
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <img 
+                src={logoImg} 
+                alt="Confort Immo Archi Logo" 
+                className="max-w-xs rounded-lg shadow-lg"
+                data-testid="img-confort-logo"
+              />
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div>
