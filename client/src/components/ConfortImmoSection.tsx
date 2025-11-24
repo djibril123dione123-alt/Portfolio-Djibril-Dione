@@ -6,7 +6,6 @@ import { ExternalLink, Github } from "lucide-react";
 
 // Import all images
 import logoImg from "@assets/image_1764014096713.png";
-import connexionImg from "@assets/Page de connexion (authentification) _1764013469430.png";
 import dashboardImg from "@assets/Tableau de bord_1764013469432.png";
 import bailleursImg from "@assets/Page Bailleurs_1764013469429.png";
 import contratsImg from "@assets/Page Contrats_1764013469430.png";
@@ -26,7 +25,6 @@ export function ConfortImmoSection() {
   if (!project) return null;
 
   const screenshots = [
-    { src: connexionImg, alt: "Page de connexion Confort Immo Archi" },
     { src: dashboardImg, alt: "Tableau de bord Confort Immo Archi" },
     { src: bailleursImg, alt: "Gestion des bailleurs" },
     { src: contratsImg, alt: "Gestion des contrats" },

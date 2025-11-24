@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
+import connexionImg from "@assets/Page de connexion (authentification) _1764013469430.png";
 
 export function ProjectsSection() {
   const projects = portfolioData.projects;
@@ -106,12 +107,12 @@ export function ProjectsSection() {
                   </div>
                 </div>
 
-                {project.images.length > 0 && (
+                {(project.images.length > 0 || project.id === "confort-immo") && (
                   <div className="relative">
                     <div className="macbook-frame">
                       <div className="macbook-screen">
                         <img
-                          src={project.images[0]}
+                          src={project.id === "confort-immo" ? connexionImg : project.images[0]}
                           alt={`${project.title} screenshot`}
                           className="w-full h-full object-cover"
                           data-testid={`img-project-${project.id}`}
