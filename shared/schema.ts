@@ -166,7 +166,7 @@ export const portfolioData = {
   timeline: [
     {
       id: "ucad-2024",
-      title: "Licence 2 Économie Numérique",
+      title: "Licence 2 en Economie Numérique, Développement technologique et digitalisation des affaires",
       company: "UCAD / IPP (Institut des Politiques Publiques)",
       location: "Dakar, Sénégal",
       period: "2024 - 2025",
