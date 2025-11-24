@@ -123,7 +123,7 @@ export const portfolioData = {
         "Filtres avancés multicritères",
         "Détection automatique des loyers impayés",
       ],
-      github: "https://github.com/djibril-dione/confort-immo-archi",
+      github: "https://github.com/djibril123dione123-alt/confort-immo-archi",
     },
   ],
 
