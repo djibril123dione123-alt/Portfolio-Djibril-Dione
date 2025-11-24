@@ -17,6 +17,7 @@ export function Navigation() {
   const navLinks = [
     { href: "#projets", label: "Projets" },
     { href: "#mairie", label: "Cas Mairie" },
+    { href: "#confort-immo", label: "Confort Immo" },
     { href: "#parcours", label: "Parcours" },
     { href: "#cv", label: "CV" },
   ];

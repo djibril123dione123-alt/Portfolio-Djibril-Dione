@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { TechStackMarquee } from "@/components/TechStackMarquee";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { MairieCaseStudy } from "@/components/MairieCaseStudy";
+import { ConfortImmoSection } from "@/components/ConfortImmoSection";
 import { TimelineSection } from "@/components/TimelineSection";
 import { CVSection } from "@/components/CVSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -105,6 +106,7 @@ export default function Home() {
         <TechStackMarquee />
         <ProjectsSection />
         <MairieCaseStudy />
+        <ConfortImmoSection />
         <TimelineSection />
         <CVSection />
         <ContactSection />
