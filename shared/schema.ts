@@ -60,7 +60,7 @@ export const portfolioData = {
       title: "Système de Gestion des Courriers - Mairie de Ouakam",
       description: "Digitalisation complète du traitement des courriers entrants et sortants pour la Mairie de Ouakam. Création d'une base de données Access avec formulaires dynamiques, filtres avancés et réseau local de partage.",
       role: "Développeur Full-Stack & IT Support",
-      duration: "Février 2025",
+      duration: "Octobre - Novembre 2025",
       technologies: [
         "Microsoft Access",
         "VBA",
@@ -183,7 +183,7 @@ export const portfolioData = {
       title: "Stagiaire - Digitalisation des Processus",
       company: "Mairie de Ouakam",
       location: "Ouakam, Dakar",
-      period: "Février 2025",
+      period: "Octobre - Novembre 2025",
       description: "Digitalisation complète du traitement des courriers et maintenance informatique",
       achievements: [
         "Création d'une base de données Access pour la gestion des courriers",
