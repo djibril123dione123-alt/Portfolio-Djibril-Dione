@@ -76,7 +76,7 @@ export function ConfortImmoSection() {
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">Durée</p>
-              <p className="font-semibold text-foreground">{project.duration}</p>
+              <p className="font-semibold text-foreground text-[15px]">{project.duration}</p>
             </div>
             <div className="col-span-2">
               <p className="text-sm text-muted-foreground mb-2">Technologies</p>

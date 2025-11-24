@@ -88,7 +88,7 @@ export const portfolioData = {
       title: "Confort Immo Archi - Logiciel de Gestion Immobilière",
       description: "Application web complète de gestion immobilière avec gestion multi-entités, système de rôles avancé, calcul automatique des commissions et génération de rapports PDF/Excel.",
       role: "Développeur Full-Stack",
-      duration: "Janvier - Mars 2025",
+      duration: "Octobre - Novembre 2025",
       technologies: [
         "React",
         "TypeScript",
@@ -198,7 +198,7 @@ export const portfolioData = {
       title: "Développeur Full-Stack",
       company: "Confort Immo Archi (Projet Client)",
       location: "Dakar, Sénégal",
-      period: "Janvier - Mars 2025",
+      period: "Octobre - Novembre 2025",
       description: "Développement d'un logiciel complet de gestion immobilière",
       achievements: [
         "Architecture complète avec React + TypeScript + Supabase",
