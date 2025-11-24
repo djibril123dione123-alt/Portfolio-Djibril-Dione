@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Premium - Djibril Dione</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        .cv-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            min-height: 100vh;
+        }
+        
+        .left-column {
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 2.5rem;
+            position: relative;
+        }
+        
+        .left-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .right-column {
+            padding: 3rem 3.5rem;
+            background: #fafafa;
+        }
+        
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255,255,255,0.2);
+            margin: 0 auto 2rem;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+        
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .left-column .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 1px;
+        }
+        
+        .right-column .section-title {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
+        }
+        
+        .contact-item i {
+            width: 20px;
+            margin-right: 1rem;
+            color: #3498db;
+        }
+        
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-category h4 {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #3498db;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: rgba(255,255,255,0.15);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .language-level {
+            background: #3498db;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item:hover, .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .item-company {
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+        
+        .item-period {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .item-description {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+        
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .interest-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 3px solid #3498db;
+        }
+        
+        .interest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .interest-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        .interest-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .profile-summary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .profile-summary p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        @media (max-width: 768px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+                margin: 1rem;
+            }
+            
+            .left-column, .right-column {
+                padding: 2rem 1.5rem;
+            }
+            
+            .name {
+                font-size: 1.8rem;
+            }
+            
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-period {
+                margin-top: 0.5rem;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <img src="" alt="Djibril Dione" class="profile-photo">
+            
+            <h1 class="name">Djibril Dione</h1>
+            <p class="title">Étudiant en Économie Numérique | Développeur Web | Entrepreneur</p>
+            
+            <div class="section">
+                <h3 class="section-title">Contact</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>djibril.dione@ucad.edu.sn</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+221 76 579 79 12</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Dakar, Ouakam, Sénégal</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>27 Septembre 2005</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">Compétences</h3>
+                
+                <div class="skill-category">
+                    <h4>Langages de Programmation</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Logiciels & Outils</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">N8N</span>
+                        <span class="skill-tag">Visual Studio Code</span>
+                        <span class="skill-tag">Cursor</span>
+                        <span class="skill-tag">Winsurf</span>
+                        <span class="skill-tag">Filmora</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Suite Microsoft Office</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Word</span>
+                        <span class="skill-tag">PowerPoint</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Design & Création</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">Notion</span>
+                        <span class="skill-tag">WordPress</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">Langues</h3>
+                <div class="language-item">
+                    <span>Français</span>
+                    <span class="language-level">Courant</span>
+                </div>
+                <div class="language-item">
+                    <span>Anglais</span>
+                    <span class="language-level">Professionnel</span>
+                </div>
+                <div class="language-item">
+                    <span>Wolof</span>
+                    <span class="language-level">Maternel</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="right-column">
+            <div class="profile-summary">
+                <p>Étudiant passionné en Économie Numérique avec une expertise en développement web et entrepreneuriat digital. Autodidacte en intelligence artificielle et nouvelles technologies, avec une expérience pratique en freelance et enseignement.</p>
+            </div>
+            
+            <section>
+                <h2 class="section-title"><i class="fas fa-briefcase" style="margin-right: 10px;"></i>Expériences Professionnelles</h2>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Développeur Web Freelance</div>
+                            <div class="item-company">Travail Indépendant</div>
+                        </div>
+                        <div class="item-period">2024</div>
+                    </div>
+                    <div class="item-description">
+                        Développement de sites web personnalisés pour clients privés et petites entreprises. Maîtrise des technologies modernes de développement web et création d'interfaces utilisateur intuitives.
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Répétiteur en Mathématiques</div>
+                            <div class="item-company">Cours du Soir Alal Ya Ndira</div>
+                        </div>
+                        <div class="item-period">2021 - 2025</div>
+                    </div>
+                    <div class="item-description">
+                        Encadrement pédagogique d'élèves en mathématiques. Développement de méthodes d'enseignement adaptées pour améliorer les performances académiques des étudiants.
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="section-title"><i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Formation</h2>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Licence 1 Économie Numérique</div>
+                            <div class="item-company">UCAD / IPP (Institut des Politiques Publiques)</div>
+                        </div>
+                        <div class="item-period">2024 - 2025</div>
+                    </div>
+                    <div class="item-description">
+                        Spécialisation en Développement technologique et digitale des affaires. Formation axée sur l'économie digitale, les nouvelles technologies et l'innovation entrepreneuriale.
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Baccalauréat Série S2</div>
+                            <div class="item-company">Cours Anne Marie Javouhey</div>
+                        </div>
+                        <div class="item-period">2023 - 2024</div>
+                    </div>
+                    <div class="item-description">
+                        <strong>Mention Bien</strong> - Formation scientifique avec excellence académique, base solide en mathématiques et sciences.
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Formation Développement Web & Python</div>
+                            <div class="item-company">Formation Autodidacte</div>
+                        </div>
+                        <div class="item-period">2021 - 2023</div>
+                    </div>
+                    <div class="item-description">
+                        Apprentissage autonome des technologies web modernes et du langage Python. Développement de projets pratiques et maîtrise des frameworks populaires.
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="section-title"><i class="fas fa-heart" style="margin-right: 10px;"></i>Centres d'Intérêt</h2>
+                
+                <div class="interests-grid">
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="interest-title">Intelligence Artificielle</div>
+                        <p>Passionné par l'IA et les nouvelles technologies. Autodidacte en constante formation sur les dernières innovations.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="interest-title">Entrepreneuriat</div>
+                        <p>Entrepreneur étudiant avec expérience en e-commerce et freelance. Vision innovante pour les affaires digitales.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="interest-title">Développement Personnel</div>
+                        <p>Lecteur assidu avec plus d'une centaine de livres lus, spécialisé en développement personnel et croissance.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="interest-title">Montage Vidéo</div>
+                        <p>Compétences en création et montage vidéo, maîtrise des outils professionnels pour contenus digitaux.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <div class="interest-title">Sport</div>
+                        <p>Athlète sélectionné à US Ouakam en football et basketball. Esprit d'équipe et performance.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="section-title"><i class="fas fa-trophy" style="margin-right: 10px;"></i>Certifications & Récompenses</h2>
+                
+                <div class="achievement-item">
+                    <div class="achievement-title">
+                        <i class="fab fa-python" style="margin-right: 10px;"></i>
+                        Certificat Python
+                    </div>
+                    <div class="achievement-details">
+                        Coursera - 2023 | Validation des compétences en programmation Python et développement d'applications.
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-title">
+                        <i class="fas fa-medal" style="margin-right: 10px;"></i>
+                        Excellence en Mathématiques
+                    </div>
+                    <div class="achievement-details">
+                        De nombreuses fois dans les 3 premiers du concours de mathématiques Alal Ya Ndira - Reconnaissance de l'excellence académique.
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

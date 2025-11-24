@@ -1,0 +1,707 @@
+P3:
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Djibril DIONE | Full-Stack Engineer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts: Outfit (Titres) & Plus Jakarta Sans (Corps) pour un look Tech Moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome & Lucide Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#020617', // Fond ultra sombre
+                            900: '#0B1120', // Surface
+                            800: '#1E293B',
+                        },
+                        accent: {
+                            blue: '#38BDF8', // Bleu Ciel Vif (Sky 400)
+                            primary: '#0EA5E9', // Bleu Océan (Sky 500)
+                            glow: 'rgba(56, 189, 248, 0.5)'
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 30s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'cursor': 'cursor .75s step-end infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        cursor: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Advanced Glassmorphism */
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-panel:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Text Gradients */
+        .text-gradient {
+            background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* MacBook Frame CSS */
+        .macbook {
+            position: relative;
+            background: #1e293b;
+            border-radius: 16px 16px 0 0;
+            border: 1px solid #334155;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+        }
+        .macbook:hover {
+            transform: scale(1.02);
+        }
+        .macbook-screen {
+            position: relative;
+            background: #0f172a;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            margin: 3%;
+            aspect-ratio: 16/10;
+            border: 1px solid #334155;
+        }
+        .macbook-base {
+            background: #334155;
+            height: 14px;
+            border-radius: 0 0 12px 12px;
+            position: relative;
+        }
+        .macbook-base::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20%;
+            height: 4px;
+            background: #1e293b;
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* 3D Tilt Effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38BDF8; }
+
+        /* Timeline Elements */
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #38BDF8, #1e293b);
+        }
+
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+            .glass-panel { border: none !important; background: none !important; box-shadow: none !important; color: black !important; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent-blue selection:text-white">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 no-print" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-display font-bold tracking-tight group text-white">
+                DJIBRIL<span class="text-accent-blue transition-colors">.DIONE</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#projets" class="hover:text-accent-blue transition-colors">Projets</a>
+                <a href="#mairie" class="hover:text-accent-blue transition-colors">Cas Mairie</a>
+                <a href="#timeline" class="hover:text-accent-blue transition-colors">Parcours</a>
+                <a href="#cv" class="hover:text-accent-blue transition-colors">CV</a>
+            </div>
+
+            <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-accent-primary to-blue-600 rounded-full text-white text-sm font-semibold hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all transform hover:-translate-y-0.5">
+                Me contacter
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Fusion: Typing + 3D Tilt) -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-navy-950">
+        <!-- Background Blobs -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent-blue/10 rounded-full blur-[120px] animate-blob"></div>
+            <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] animate-blob" style="animation-delay: 2s;"></div>
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+        </div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-accent-blue/30 text-accent-blue text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-accent-blue animate-pulse"></span>
+                    Open to Work
+                </div>
+
+                <h1 class="text-5xl lg:text-7xl font-display font-bold leading-[1.1] text-white">
+                    Je suis <br>
+                    <span id="typing-text" class="text-gradient">Développeur</span><span class="animate-cursor text-accent-blue">|</span>
+                </h1>
+
+                <p class="text-lg text-slate-400 max-w-xl leading-relaxed">
+                    Ingénieur Full-Stack & Data Analyst. Je transforme des problèmes complexes en solutions digitales élégantes, robustes et scalables.
+                </p>
+
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projets" class="px-8 py-4 bg-white text-navy-950 rounded-full font-bold hover:bg-blue-50 transition-all flex items-center gap-2">
+                        <i class="fas fa-folder-open"></i> Voir mes projets
+                    </a>
+                    <a href="#cv" class="px-8 py-4 bg-navy-900 border border-slate-700 text-white rounded-full font-bold hover:bg-navy-800 transition-all flex items-center gap-2">
+                        <i class="fas fa-download"></i> CV Complet
+                    </a>
+                </div>
+                
+                <!-- Social Proof -->
+                <div class="pt-6 flex items-center gap-4 text-sm text-slate-500 font-medium">
+                    <span class="flex items-center gap-1"><i class="fab fa-github text-xl"></i> GitHub</span>
+                    <span class="flex items-center gap-1"><i class="fab fa-linkedin text-xl"></i> LinkedIn</span>
+                    <span class="text-accent-blue">Available 2025</span>
+                </div>
+            </div>
+
+            <!-- Right Visual (3D Tilt) -->
+            <div class="hidden lg:block relative perspective-1000">
+                <div class="tilt-card relative z-20 bg-gradient-to-br from-slate-800 to-navy-900 rounded-2xl p-1 border border-slate-700 shadow-2xl group">
+                    <!-- Placeholder Photo - Replace with real one -->
+                    <img 
+                        src="https://placehold.co/600x600/0B1120/38BDF8?text=Djibril+DIONE" 
+                        alt="Djibril DIONE" 
+                        class="rounded-xl w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    >
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-6 bg-white text-navy-950 p-4 rounded-xl shadow-xl animate-float">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-accent-blue/10 rounded-lg text-accent-blue">
+                                <i class="fas fa-code text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase">Stack</p>
+                                <p class="font-bold">Fullstack Dev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFINITE MARQUEE (Tech Stack) -->
+    <section class="py-10 border-y border-slate-800/50 bg-navy-900/50 overflow-hidden">
+        <div class="flex w-[200%] animate-marquee gap-16 items-center">
+            <div class="flex gap-16 items-center whitespace-nowrap text-slate-400 font-display font-bold text-xl uppercase tracking-widest">
+                <span>React</span> <span class="text-accent-blue">•</span>
+                <span>TypeScript</span> <span class="text-accent-blue">•</span>
+                <span>Tailwind</span> <span class="text-accent-blue">•</span>
+                <span>Supabase</span> <span class="text-accent-blue">•</span>
+                <span>PostgreSQL</span> <span class="text-accent-blue">•</span>
+                <span>Python</span> <span class="text-accent-blue">•</span>
+                <span>Access VBA</span> <span class="text-accent-blue">•</span>
+                <span>Git</span> <span class="text-accent-blue">•</span>
+                <!-- Duplicate -->
+                <span>React</span> <span class="text-accent-blue">•</span>
+                <span>TypeScript</span> <span class="text-accent-blue">•</span>
+                <span>Tailwind</span> <span class="text-accent-blue">•</span>
+                <span>Supabase</span> <span class="text-accent-blue">•</span>
+                <span>PostgreSQL</span> <span class="text-accent-blue">•</span>
+                <span>Python</span> <span class="text-accent-blue">•</span>
+                <span>Access VBA</span> <span class="text-accent-blue">•</span>
+                <span>Git</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJET STAR (Macbook Frame + AI) -->
+    <section id="projets" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-accent-blue font-bold uppercase tracking-widest text-sm mb-2">Projet Phare</h2>
+                    <h3 class="text-4xl md:text-5xl font-display font-bold text-white">Confort Immo Archi</h3>
+                </div>
+                <div class="flex gap-2">
+                    <span class="px-3 py-1 rounded-full border border-slate-700 text-slate-300 text-xs font-bold">REACT</span>
+                    <span class="px-3 py-1 rounded-full border border-slate-700 text-slate-300 text-xs font-bold">SUPABASE</span>
+                    <span class="px-3 py-1 rounded-full border border-slate-700 text-slate-300 text-xs font-bold">ERP</span>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Description with AI Button -->
+                <div class="space-y-8 order-2 lg:order-1">
+                    <div class="glass-panel p-8 rounded-2xl">
+                        <p class="text-slate-300 leading-relaxed mb-6" id="project-desc-1">
+                            Une solution SaaS complète déployée pour une agence immobilière réelle. Ce logiciel automatise la gestion locative (bailleurs, locataires, contrats, paiements) et sécurise les données via Supabase RLS. Stack : React, TypeScript, Supabase, PostgreSQL.
+                        </p>
+                        
+                        <ul class="space-y-3 mb-6 text-sm text-slate-400">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue"></i> Automatisation des quittances</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue"></i> Sécurité RLS & Rôles</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue"></i> Dashboard financier temps réel</li>
+                        </ul>
+
+                        <div class="flex gap-4">
+                            <a href="#" class="text-white font-bold hover:text-accent-blue transition">Voir Demo <i class="fas fa-arrow-right ml-1"></i></a>
+                            <button onclick="analyzeProject('project-desc-1', 'Analyse Confort Immo')"
+                                    class="px-3 py-1 bg-slate-800 text-sm rounded-full text-accent-blue border border-accent-blue hover:bg-accent-blue hover:text-white transition">
+                                    ✨ Analyse IA
+                            </button>
+                        </div>
+                        
+                        <!-- AI Result Box -->
+                        <div id="project-analysis-result" class="mt-4 p-4 bg-slate-900/80 rounded-lg text-xs text-slate-300 hidden border border-slate-700">
+                            <h4 class="font-bold text-white mb-2" id="analysis-title"></h4>
+                            <div id="analysis-content"></div>
+                            <div id="analysis-loading" class="hidden text-accent-blue"><i class="fas fa-spinner fa-spin"></i> Analyse en cours...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual (Macbook Frame) -->
+                <div class="order-1 lg:order-2 perspective-1000">
+                    <div class="macbook">
+                        <div class="macbook-screen">
+                            <!-- REPLACE WITH REAL DASHBOARD SCREENSHOT -->
+                            <img src="https://placehold.co/1280x800/0F172A/38BDF8?text=Dashboard+Immobilier+React" alt="Dashboard" class="w-full h-full object-cover">
+                        </div>
+                        <div class="macbook-base"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÉTUDE DE CAS MAIRIE (Interactive Slider) -->
+    <section id="mairie" class="py-24 bg-navy-900 relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-accent-blue/5 skew-x-12"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-accent-blue font-bold uppercase tracking-widest text-sm mb-2">Transformation Digitale</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-white">Mairie de Ouakam</h3>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8">
+                <!-- Navigation (Left) -->
+                <div class="lg:col-span-4 space-y-4" id="mairie-nav">
+                    <!-- Generated by JS -->
+                </div>
+
+                <!-- Display (Right) -->
+                <div class="lg:col-span-8">
+                    <div class="glass-panel p-2 rounded-2xl bg-black/40 aspect-video relative overflow-hidden group">
+                        <img id="mairie-display" src="" class="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" alt="Slide">
+                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent">
+                            <p id="mairie-caption" class="text-white font-medium text-lg"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12" id="stats-section">
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1" data-target="70">0%</div>
+                    <div class="text-xs text-slate-500 uppercase">Temps Gagné</div>
+                </div>
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1" data-target="0">0%</div>
+                    <div class="text-xs text-slate-500 uppercase">Perte Courrier</div>
+                </div>
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1" data-target="5">0+</div>
+                    <div class="text-xs text-slate-500 uppercase">Postes Connectés</div>
+                </div>
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1" data-target="100">0%</div>
+                    <div class="text-xs text-slate-500 uppercase">Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE PARCOURS -->
+    <section id="timeline" class="py-24 relative">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-display font-bold text-white mb-12 text-center">Mon Parcours</h2>
+            
+            <div class="relative pl-8 space-y-12">
+                <div class="timeline-line"></div>
+
+                <!-- Item 2025 -->
+                <div class="relative group">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-accent-blue border-4 border-navy-950 group-hover:scale-125 transition-transform"></div>
+                    <span class="text-accent-blue font-mono text-sm font-bold mb-2 block">2025</span>
+                    <div class="glass-panel p-6 rounded-xl hover:border-accent-blue/50 transition">
+                        <h3 class="text-xl font-bold text-white">Fondateur Confort Immo Archi & Stage Mairie</h3>
+                        <p class="text-slate-400 mt-2">Développement et déploiement de solutions complètes. Gestion du cycle de vie logiciel, de la conception au déploiement en production.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2024 -->
+                <div class="relative group">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-700 border-4 border-navy-950 group-hover:bg-accent-blue transition-colors"></div>
+                    <span class="text-slate-500 font-mono text-sm font-bold mb-2 block">2024</span>
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-white">Licence 2 Économie Numérique</h3>
+                        <p class="text-slate-400 mt-2">UCAD / IPP. Spécialisation en développement technologique et digital des affaires.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2023 -->
+                <div class="relative group">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-700 border-4 border-navy-950"></div>
+                    <span class="text-slate-500 font-mono text-sm font-bold mb-2 block">2023</span>
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-white">Baccalauréat S2 & Début Autodidacte</h3>
+                        <p class="text-slate-400 mt-2">Mention Assez Bien. Apprentissage intensif de Python et du Web (HTML/CSS).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & CV (Paper Effect + AI Pitch) -->
+    <section id="contact" class="py-24 bg-slate-100 text-slate-900 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Left: Pitch IA & Contact Form -->
+                <div class="space-y-8 no-print">
+                    <div>
+                        <h2 class="text-4xl font-display font-bold text-navy-950 mb-4">Travaillons Ensemble</h2>
+                        <p class="text-slate-600">Prêt à accélérer votre projet ? Utilisez l'IA pour générer un message d'intro ou contactez-moi directement.</p>
+                    </div>
+
+                    <!-- AI Pitch Tool -->
+                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-200">
+                        <h3 class="text-lg font-bold text-accent-primary mb-2">✨ Générateur de Pitch IA</h3>
+                        <textarea id="pitch-context" rows="2" placeholder="Ex: Je cherche un poste de Dev React..." class="w-full p-3 rounded-lg border border-slate-300 text-sm mb-3 focus:ring-2 focus:ring-accent-primary outline-none"></textarea>
+                        <button onclick="generatePitch()" class="text-sm font-bold text-white bg-navy-900 px-4 py-2 rounded-lg hover:bg-accent-primary transition w-full">Générer</button>
+                        
+                        <div id="pitch-result" class="mt-4 hidden">
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200 text-sm text-slate-700 italic" id="generated-pitch-text"></div>
+                        </div>
+                        <div id="pitch-loading" class="hidden mt-2 text-center text-accent-primary"><i class="fas fa-spinner fa-spin"></i></div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <a href="mailto:dionedjibril33@gmail.com" class="flex-1 py-3 bg-accent-primary text-white font-bold text-center rounded-xl hover:bg-blue-600 transition shadow-lg">
+                            Email
+                        </a>
+                        <a href="#" class="flex-1 py-3 bg-navy-900 text-white font-bold text-center rounded-xl hover:bg-navy-800 transition shadow-lg">
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Printable CV (Paper Effect) -->
+                <div id="cv" class="bg-white p-[10mm] shadow-2xl transform md:rotate-1 hover:rotate-0 transition duration-500 relative print:shadow-none print:rotate-0">
+                    <!-- Header CV -->
+                    <div class="border-b-2 border-navy-950 pb-6 mb-6 flex justify-between items-start">
+                        <div>
+                            <h1 class="text-3xl font-bold uppercase tracking-wider text-navy-950">Djibril DIONE</h1>
+                            <p class="text-md text-accent-primary font-semibold mt-1">Développeur Fullstack & Data</p>
+                        </div>
+                        <div class="text-right text-xs text-slate-600 space-y-1">
+                            <p>+221 76 579 79 12</p>
+                            <p>dionedjibril33@gmail.com</p>
+                            <p>Dakar, Ouakam</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 text-sm">
+                        <div class="col-span-2 space-y-4">
+                            <section>
+                                <h3 class="font-bold uppercase text-navy-900 border-b border-slate-200 pb-1 mb-2">Expériences</h3>
+                                <div class="mb-3">
+                                    <div class="flex justify-between"><span class="font-bold">Fondateur Confort Immo</span> <span class="text-xs bg-slate-100 px-1">2025</span></div>
+                                    <p class="text-xs text-slate-600 mt-1">Dév Fullstack React/Supabase. SaaS complet gestion locative.</p>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between"><span class="font-bold">Stage Mairie Ouakam</span> <span class="text-xs bg-slate-100 px-1">2025</span></div>
+                                    <p class="text-xs text-slate-600 mt-1">Digitalisation courriers (Access/SQL), Réseau LAN.</p>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 class="font-bold uppercase text-navy-900 border-b border-slate-200 pb-1 mb-2">Formation</h3>
+                                <div><span class="font-bold">L2 Économie Numérique</span> - UCAD (2024)</div>
+                                <div><span class="font-bold">Bac S2</span> - Mention AB (2023)</div>
+                            </section>
+                        </div>
+                        <div class="space-y-4">
+                            <section>
+                                <h3 class="font-bold uppercase text-navy-900 border-b border-slate-200 pb-1 mb-2">Stack</h3>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-1.5 py-0.5 bg-navy-50 text-navy-900 text-xs border rounded">React</span>
+                                    <span class="px-1.5 py-0.5 bg-navy-50 text-navy-900 text-xs border rounded">TS</span>
+                                    <span class="px-1.5 py-0.5 bg-navy-50 text-navy-900 text-xs border rounded">Supabase</span>
+                                    <span class="px-1.5 py-0.5 bg-navy-50 text-navy-900 text-xs border rounded">SQL</span>
+                                    <span class="px-1.5 py-0.5 bg-navy-50 text-navy-900 text-xs border rounded">Python</span>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 class="font-bold uppercase text-navy-900 border-b border-slate-200 pb-1 mb-2">Atouts</h3>
+                                <ul class="list-disc list-inside text-xs text-slate-600">
+                                    <li>Stoïcisme</li>
+                                    <li>Rigueur Math</li>
+                                    <li>Anglais Pro</li>
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                    
+                    <!-- Print Button (Only visible on screen) -->
+                    <button onclick="window.print()" class="absolute top-4 right-4 no-print p-2 bg-navy-900 text-white rounded hover:bg-accent-primary transition">
+                        <i class="fas fa-print"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. TYPING EFFECT (Hero) ---
+        const roles = ["Développeur", "Entrepreneur", "Data Analyst", "Tech Builder"];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+            setTimeout(type, isDeleting ? 50 : 150);
+        }
+        type();
+
+        // --- 2. 3D TILT EFFECT ---
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // --- 3. MAIRIE SLIDER LOGIC ---
+        const mairieSlides = [
+            { title: "Le Problème", desc: "Gestion papier inefficace, pertes et lenteur.", img: "https://placehold.co/800x450/112953/FFFFFF?text=Chaos+Administratif" },
+            { title: "Solution Access", desc: "Base de données relationnelle centralisée.", img: "https://placehold.co/800x450/2D9CDB/FFFFFF?text=Interface+Access+Pro" },
+            { title: "Résultats", desc: "Temps de recherche divisé par 10.", img: "https://placehold.co/800x450/0EA5E9/FFFFFF?text=Formation+Equipes" }
+        ];
+        let currentSlide = 0;
+
+        function renderMairieNav() {
+            const container = document.getElementById('mairie-nav');
+            let html = '';
+            mairieSlides.forEach((slide, idx) => {
+                const isActive = idx === currentSlide;
+                html += `
+                    <div onclick="setSlide(${idx})" class="p-4 rounded-xl cursor-pointer transition-all border-l-4 ${isActive ? 'bg-white/5 border-accent-primary' : 'border-transparent hover:bg-white/5 opacity-50'}">
+                        <h4 class="text-white font-bold">${slide.title}</h4>
+                        <p class="text-sm text-slate-400 mt-1">${slide.desc}</p>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function setSlide(idx) {
+            currentSlide = idx;
+            const img = document.getElementById('mairie-display');
+            const cap = document.getElementById('mairie-caption');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = mairieSlides[idx].img;
+                cap.textContent = `${mairieSlides[idx].title} - ${mairieSlides[idx].desc}`;
+                img.style.opacity = '1';
+            }, 300);
+            renderMairieNav();
+        }
+        renderMairieNav();
+        setSlide(0);
+
+        // --- 4. GEMINI AI MOCKUP FUNCTIONS (To avoid errors without key) ---
+        // Remplacez ceci par votre vraie fonction fetchWithExponentialBackoff si vous avez une clé API
+        async function analyzeProject(descId, title) {
+            const box = document.getElementById('project-analysis-result');
+            const content = document.getElementById('analysis-content');
+            const titleEl = document.getElementById('analysis-title');
+            const loading = document.getElementById('analysis-loading');
+            
+            box.classList.remove('hidden');
+            loading.classList.remove('hidden');
+            content.innerHTML = '';
+            titleEl.innerText = title;
+
+            // Simulation de délai API
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                content.innerHTML = `
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong class="text-accent-blue">Impact Fort:</strong> Solution complète (Front+Back+DB) résolvant un problème métier réel.</li>
+                        <li><strong class="text-accent-blue">Sécurité:</strong> L'usage de RLS montre une maturité technique senior.</li>
+                        <li><strong class="text-accent-blue">Suggestion:</strong> Ajouter des tests unitaires (Jest) pour valider la robustesse.</li>
+                    </ul>
+                `;
+            }, 1500);
+        }
+
+        async function generatePitch() {
+            const loading = document.getElementById('pitch-loading');
+            const result = document.getElementById('pitch-result');
+            const text = document.getElementById('generated-pitch-text');
+            
+            loading.classList.remove('hidden');
+            result.classList.add('hidden');
+
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                result.classList.remove('hidden');
+                text.innerText = "Bonjour, je suis Djibril DIONE. Ingénieur Full-Stack spécialisé en React et Data, j'ai récemment digitalisé les processus d'une Mairie et créé un SaaS immobilier. Je peux apporter cette capacité à livrer des solutions complexes et sécurisées à votre équipe dès aujourd'hui.";
+            }, 1500);
+        }
+
+        // --- 5. GSAP ANIMATIONS ---
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Stats Counter
+        document.querySelectorAll('[data-target]').forEach(el => {
+            const target = parseInt(el.getAttribute('data-target'));
+            const isPercent = el.innerText.includes('%');
+            const isPlus = el.innerText.includes('+');
+            
+            ScrollTrigger.create({
+                trigger: el,
+                start: "top 85%",
+                once: true,
+                onEnter: () => {
+                    gsap.to(el, {
+                        innerHTML: target,
+                        duration: 2,
+                        snap: { innerHTML: 1 },
+                        onUpdate: function() {
+                            el.innerHTML = this.targets()[0].innerHTML + (isPercent ? '%' : (isPlus ? '+' : ''));
+                        }
+                    });
+                }
+            });
+        });
+
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            window.scrollY > 50 ? nav.classList.add('py-2') : nav.classList.remove('py-2');
+        });
+
+    </script>
+</body>
+</html>

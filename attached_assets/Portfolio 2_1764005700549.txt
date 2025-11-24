@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Djibril DIONE | Portfolio Professionnel</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#0a0e27',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                        },
+                        accent: {
+                            orange: '#ff6b35',
+                            gold: '#ffd60a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #1e293b 100%);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0) }
+            10% { transform: translate(-5%, -10%) }
+            30% { transform: translate(3%, -15%) }
+            50% { transform: translate(12%, 9%) }
+            70% { transform: translate(9%, 4%) }
+            90% { transform: translate(-1%, 7%) }
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.3);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(90deg); }
+            50% { transform: translate(0, -100px) rotate(180deg); }
+            75% { transform: translate(-50px, -50px) rotate(270deg); }
+        }
+
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+        }
+
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+            transition: left 0.8s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .tech-badge {
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ff6b35, #ffd60a);
+            border-radius: 10px;
+        }
+
+        .parallax-section {
+            will-change: transform;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .stat-counter {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="grain-overlay"></div>
+
+    <nav class="fixed w-full z-50 glass-effect transition-all duration-500" id="navbar">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#" class="text-2xl font-display font-bold tracking-tight group">
+                <span class="text-white">DJIBRIL</span><span class="text-accent-orange">.DEV</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="#projets" class="hover:text-accent-orange transition-colors duration-300">Projets</a>
+                <a href="#mairie" class="hover:text-accent-orange transition-colors duration-300">Cas Mairie</a>
+                <a href="#competences" class="hover:text-accent-orange transition-colors duration-300">Compétences</a>
+                <a href="#parcours" class="hover:text-accent-orange transition-colors duration-300">Parcours</a>
+            </div>
+
+            <a href="mailto:dionedjibril33@gmail.com" class="magnetic-btn px-6 py-3 bg-gradient-to-r from-accent-orange to-red-600 rounded-full text-white text-sm font-bold hover:shadow-2xl hover:shadow-orange-500/50 transition-all">
+                Contact
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="hero-blob" style="width: 600px; height: 600px; background: #ff6b35; top: -200px; left: -200px;"></div>
+        <div class="hero-blob" style="width: 500px; height: 500px; background: #ffd60a; bottom: -150px; right: -150px; animation-delay: -10s;"></div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-effect border border-accent-gold/30">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-gold opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-accent-gold"></span>
+                    </span>
+                    <span class="text-accent-gold text-xs font-bold uppercase tracking-widest">Disponible pour projets</span>
+                </div>
+
+                <h1 class="reveal-text text-6xl lg:text-8xl font-display font-black leading-[0.95] tracking-tight">
+                    Créateur de<br>
+                    <span class="text-gradient">Solutions</span><br>
+                    <span class="text-gradient">Digitales</span>
+                </h1>
+
+                <p class="reveal-text text-xl text-slate-300 leading-relaxed max-w-xl">
+                    Développeur fullstack et entrepreneur, je transforme des défis complexes en applications web élégantes et performantes.
+                </p>
+
+                <div class="reveal-text flex flex-wrap gap-4 pt-6">
+                    <a href="#projets" class="magnetic-btn px-8 py-4 bg-white text-navy-950 rounded-full font-bold hover:bg-slate-100 transition-all flex items-center gap-3 shadow-2xl">
+                        <i data-lucide="rocket" class="w-5 h-5"></i> Voir mes projets
+                    </a>
+                    <a href="/CV Djibril Dione .pdf" download class="magnetic-btn px-8 py-4 glass-effect border border-white/20 text-white rounded-full font-bold hover:bg-white/10 transition-all flex items-center gap-3">
+                        <i data-lucide="download" class="w-5 h-5"></i> Télécharger CV
+                    </a>
+                </div>
+
+                <div class="reveal-text pt-8 flex items-center gap-8">
+                    <div>
+                        <div class="stat-counter text-4xl font-bold text-accent-orange mb-1" data-target="3">0</div>
+                        <div class="text-sm text-slate-400 uppercase tracking-wide">Projets livrés</div>
+                    </div>
+                    <div class="h-12 w-px bg-slate-700"></div>
+                    <div>
+                        <div class="stat-counter text-4xl font-bold text-accent-gold mb-1" data-target="100">0</div>
+                        <div class="text-sm text-slate-400 uppercase tracking-wide">% Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden lg:block relative">
+                <div class="relative z-20">
+                    <div class="card-3d relative overflow-hidden rounded-3xl border-4 border-white/10 shadow-2xl glow-effect">
+                        <img
+                            src="/IMG-20250806-WA0018.jpg"
+                            alt="Djibril DIONE"
+                            class="w-full h-[600px] object-cover"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
+                    </div>
+
+                    <div class="absolute -bottom-10 -right-10 glass-effect p-6 rounded-2xl border border-white/10 shadow-2xl" style="animation: float 6s ease-in-out infinite;">
+                        <div class="flex items-center gap-4">
+                            <div class="p-4 bg-accent-orange/20 rounded-xl">
+                                <i data-lucide="code-2" class="w-8 h-8 text-accent-orange"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-bold uppercase mb-1">Spécialité</p>
+                                <p class="text-lg font-bold text-white">Fullstack Dev</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -top-10 -left-10 glass-effect p-6 rounded-2xl border border-white/10 shadow-2xl" style="animation: float 6s ease-in-out infinite; animation-delay: -3s;">
+                        <div class="flex items-center gap-4">
+                            <div class="p-4 bg-accent-gold/20 rounded-xl">
+                                <i data-lucide="trophy" class="w-8 h-8 text-accent-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-bold uppercase mb-1">Certification</p>
+                                <p class="text-lg font-bold text-white">Python</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border-2 border-dashed border-slate-700/30 rounded-full -z-10" style="animation: spin 60s linear infinite;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 border-y border-white/5 bg-navy-900/50 overflow-hidden">
+        <div class="marquee-container">
+            <div class="marquee-content flex gap-16 items-center text-slate-400 font-display font-bold text-2xl uppercase tracking-widest whitespace-nowrap">
+                <span>React</span>
+                <span class="text-accent-orange">●</span>
+                <span>TypeScript</span>
+                <span class="text-accent-orange">●</span>
+                <span>Tailwind CSS</span>
+                <span class="text-accent-orange">●</span>
+                <span>Supabase</span>
+                <span class="text-accent-orange">●</span>
+                <span>PostgreSQL</span>
+                <span class="text-accent-orange">●</span>
+                <span>Python</span>
+                <span class="text-accent-orange">●</span>
+                <span>Access VBA</span>
+                <span class="text-accent-orange">●</span>
+                <span>Git</span>
+                <span class="text-accent-orange">●</span>
+                <span>React</span>
+                <span class="text-accent-orange">●</span>
+                <span>TypeScript</span>
+                <span class="text-accent-orange">●</span>
+                <span>Tailwind CSS</span>
+                <span class="text-accent-orange">●</span>
+                <span>Supabase</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" class="py-32 parallax-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="reveal-text text-accent-orange font-bold uppercase tracking-widest text-sm mb-4">Portfolio</h2>
+                <h3 class="reveal-text text-5xl md:text-7xl font-display font-black text-white mb-6">Projets Remarquables</h3>
+                <p class="reveal-text text-xl text-slate-400 max-w-2xl mx-auto">Des solutions concrètes déployées en production</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                <div class="project-card glass-effect rounded-3xl overflow-hidden border border-white/10 hover:border-accent-orange/50 transition-all duration-500">
+                    <div class="relative h-80 bg-gradient-to-br from-orange-600 to-red-800 overflow-hidden group">
+                        <img src="/Logo confort immo archi neutre.png" alt="Confort Immo Archi" class="absolute inset-0 w-full h-full object-contain p-8 transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="tech-badge px-3 py-1 rounded-full bg-accent-orange/20 text-accent-orange text-xs font-bold border border-accent-orange/30">REACT</span>
+                            <span class="tech-badge px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold border border-blue-500/30">SUPABASE</span>
+                            <span class="tech-badge px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold border border-green-500/30">SAAS</span>
+                        </div>
+                        <h4 class="text-3xl font-display font-bold text-white mb-4">Confort Immo Archi</h4>
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            Application SaaS complète de gestion immobilière. Automatisation totale du workflow locatif avec gestion multi-rôles, calculs financiers automatiques et génération de documents PDF.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-slate-400"><strong class="text-white">Authentification avancée</strong> avec Row Level Security</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-slate-400"><strong class="text-white">Dashboard temps réel</strong> avec graphiques interactifs</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-slate-400"><strong class="text-white">Exports automatisés</strong> PDF et Excel</span>
+                            </li>
+                        </ul>
+                        <div class="flex gap-4">
+                            <button class="flex-1 magnetic-btn px-6 py-3 bg-accent-orange text-white rounded-xl font-bold hover:bg-accent-orange/80 transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="external-link" class="w-4 h-4"></i> Voir détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-effect rounded-3xl overflow-hidden border border-white/10 hover:border-accent-gold/50 transition-all duration-500">
+                    <div class="relative h-80 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center overflow-hidden group">
+                        <div class="text-9xl opacity-20 group-hover:opacity-30 transition-opacity duration-700">📧</div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="tech-badge px-3 py-1 rounded-full bg-accent-gold/20 text-accent-gold text-xs font-bold border border-accent-gold/30">ACCESS</span>
+                            <span class="tech-badge px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold border border-purple-500/30">VBA</span>
+                            <span class="tech-badge px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold border border-cyan-500/30">RÉSEAU</span>
+                        </div>
+                        <h4 class="text-3xl font-display font-bold text-white mb-4">Mairie de Ouakam</h4>
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            Digitalisation complète du système de gestion du courrier. Base de données Access avec interface intuitive, filtres avancés et déploiement réseau local.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-slate-400"><strong class="text-white">0% perte</strong> de documents</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-slate-400"><strong class="text-white">Recherche instantanée</strong> en moins de 3 secondes</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-slate-400"><strong class="text-white">Réseau LAN</strong> déployé et opérationnel</span>
+                            </li>
+                        </ul>
+                        <div class="flex gap-4">
+                            <a href="#mairie" class="flex-1 magnetic-btn px-6 py-3 bg-accent-gold text-navy-950 rounded-xl font-bold hover:bg-accent-gold/80 transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="eye" class="w-4 h-4"></i> Étude de cas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mairie" class="py-32 bg-navy-900/30 relative overflow-hidden">
+        <div class="hero-blob" style="width: 500px; height: 500px; background: #ffd60a; top: -150px; right: -150px;"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="reveal-text text-accent-gold font-bold uppercase tracking-widest text-sm mb-4">Transformation Digitale</h2>
+                <h3 class="reveal-text text-5xl md:text-7xl font-display font-black text-white mb-6">Mairie de Ouakam</h3>
+                <p class="reveal-text text-xl text-slate-400 max-w-2xl mx-auto">Comment j'ai modernisé la gestion administrative d'une institution publique</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div class="space-y-6">
+                    <div class="glass-effect p-8 rounded-2xl border border-white/10 hover:border-accent-gold/50 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3 bg-red-500/20 rounded-xl">
+                                <i data-lucide="alert-circle" class="w-6 h-6 text-red-400"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white">Le Problème</h4>
+                        </div>
+                        <p class="text-slate-300 leading-relaxed">
+                            La mairie gérait manuellement des milliers de courriers sur papier. Cela causait des pertes de documents, des recherches interminables et une efficacité réduite. Le besoin de modernisation était critique.
+                        </p>
+                    </div>
+
+                    <div class="glass-effect p-8 rounded-2xl border border-white/10 hover:border-accent-orange/50 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3 bg-accent-orange/20 rounded-xl">
+                                <i data-lucide="lightbulb" class="w-6 h-6 text-accent-orange"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white">La Solution</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mt-0.5"></i>
+                                <span class="text-slate-300">Base de données Access complète avec interface ergonomique</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mt-0.5"></i>
+                                <span class="text-slate-300">Formulaires dynamiques avec tri automatique et filtres avancés</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mt-0.5"></i>
+                                <span class="text-slate-300">Déploiement réseau LAN pour accès multi-postes</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mt-0.5"></i>
+                                <span class="text-slate-300">Maintenance IT complète du parc informatique</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-effect p-8 rounded-2xl border border-white/10 hover:border-green-500/50 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3 bg-green-500/20 rounded-xl">
+                                <i data-lucide="trophy" class="w-6 h-6 text-green-400"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white">Les Résultats</h4>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center p-4 bg-navy-950/50 rounded-xl">
+                                <div class="text-3xl font-bold text-accent-gold mb-1">100%</div>
+                                <div class="text-xs text-slate-400 uppercase">Satisfaction</div>
+                            </div>
+                            <div class="text-center p-4 bg-navy-950/50 rounded-xl">
+                                <div class="text-3xl font-bold text-accent-gold mb-1">0%</div>
+                                <div class="text-xs text-slate-400 uppercase">Perte</div>
+                            </div>
+                            <div class="text-center p-4 bg-navy-950/50 rounded-xl">
+                                <div class="text-3xl font-bold text-accent-gold mb-1">3s</div>
+                                <div class="text-xs text-slate-400 uppercase">Recherche</div>
+                            </div>
+                            <div class="text-center p-4 bg-navy-950/50 rounded-xl">
+                                <div class="text-3xl font-bold text-accent-gold mb-1">LAN</div>
+                                <div class="text-xs text-slate-400 uppercase">Réseau</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-effect p-2 rounded-2xl border border-white/10">
+                        <div class="bg-slate-900 rounded-xl p-6 aspect-video flex items-center justify-center">
+                            <div class="text-center">
+                                <i data-lucide="database" class="w-20 h-20 text-accent-gold mx-auto mb-4"></i>
+                                <p class="text-white font-bold text-xl mb-2">Interface Access</p>
+                                <p class="text-slate-400 text-sm">Formulaire de saisie et gestion du courrier</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-effect p-8 rounded-2xl border border-white/10">
+                        <h5 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                            <i data-lucide="code-2" class="w-5 h-5 text-accent-orange"></i>
+                            Stack Technique
+                        </h5>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="tech-badge p-4 bg-navy-950/50 rounded-xl border border-white/5 text-center">
+                                <i data-lucide="database" class="w-6 h-6 text-accent-orange mx-auto mb-2"></i>
+                                <p class="text-sm font-bold text-white">Microsoft Access</p>
+                            </div>
+                            <div class="tech-badge p-4 bg-navy-950/50 rounded-xl border border-white/5 text-center">
+                                <i data-lucide="code" class="w-6 h-6 text-accent-orange mx-auto mb-2"></i>
+                                <p class="text-sm font-bold text-white">VBA</p>
+                            </div>
+                            <div class="tech-badge p-4 bg-navy-950/50 rounded-xl border border-white/5 text-center">
+                                <i data-lucide="network" class="w-6 h-6 text-accent-orange mx-auto mb-2"></i>
+                                <p class="text-sm font-bold text-white">Réseau LAN</p>
+                            </div>
+                            <div class="tech-badge p-4 bg-navy-950/50 rounded-xl border border-white/5 text-center">
+                                <i data-lucide="shield-check" class="w-6 h-6 text-accent-orange mx-auto mb-2"></i>
+                                <p class="text-sm font-bold text-white">Sécurité IT</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-effect p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-accent-orange/10 to-transparent">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-accent-orange/20 rounded-xl">
+                                <i data-lucide="quote" class="w-6 h-6 text-accent-orange"></i>
+                            </div>
+                            <div>
+                                <p class="text-slate-300 italic leading-relaxed mb-4">
+                                    "Une transformation complète de nos processus administratifs. Djibril a su comprendre nos besoins et livrer une solution parfaitement adaptée."
+                                </p>
+                                <p class="text-sm text-accent-orange font-bold">— Mairie de Ouakam</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences" class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="reveal-text text-accent-orange font-bold uppercase tracking-widest text-sm mb-4">Expertise</h2>
+                <h3 class="reveal-text text-5xl md:text-7xl font-display font-black text-white mb-6">Stack Technique</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-accent-orange/50 transition-all duration-300">
+                    <div class="p-4 bg-accent-orange/20 rounded-xl w-fit mb-6">
+                        <i data-lucide="layout" class="w-8 h-8 text-accent-orange"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Frontend</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-bold border border-blue-500/30">React</span>
+                        <span class="tech-badge px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-bold border border-blue-500/30">TypeScript</span>
+                        <span class="tech-badge px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-lg text-sm font-bold border border-cyan-500/30">Tailwind</span>
+                        <span class="tech-badge px-3 py-1 bg-orange-500/20 text-orange-400 rounded-lg text-sm font-bold border border-orange-500/30">Vite</span>
+                    </div>
+                </div>
+
+                <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-green-500/50 transition-all duration-300">
+                    <div class="p-4 bg-green-500/20 rounded-xl w-fit mb-6">
+                        <i data-lucide="server" class="w-8 h-8 text-green-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Backend</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-1 bg-green-500/20 text-green-400 rounded-lg text-sm font-bold border border-green-500/30">Supabase</span>
+                        <span class="tech-badge px-3 py-1 bg-blue-600/20 text-blue-400 rounded-lg text-sm font-bold border border-blue-600/30">PostgreSQL</span>
+                        <span class="tech-badge px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-lg text-sm font-bold border border-yellow-500/30">Python</span>
+                    </div>
+                </div>
+
+                <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+                    <div class="p-4 bg-purple-500/20 rounded-xl w-fit mb-6">
+                        <i data-lucide="database" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Databases</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-1 bg-slate-600/20 text-slate-300 rounded-lg text-sm font-bold border border-slate-600/30">SQL</span>
+                        <span class="tech-badge px-3 py-1 bg-red-600/20 text-red-400 rounded-lg text-sm font-bold border border-red-600/30">Access</span>
+                        <span class="tech-badge px-3 py-1 bg-purple-600/20 text-purple-400 rounded-lg text-sm font-bold border border-purple-600/30">VBA</span>
+                    </div>
+                </div>
+
+                <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all duration-300">
+                    <div class="p-4 bg-yellow-500/20 rounded-xl w-fit mb-6">
+                        <i data-lucide="wrench" class="w-8 h-8 text-yellow-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Outils</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-1 bg-orange-600/20 text-orange-400 rounded-lg text-sm font-bold border border-orange-600/30">Git</span>
+                        <span class="tech-badge px-3 py-1 bg-slate-700/20 text-slate-300 rounded-lg text-sm font-bold border border-slate-700/30">GitHub</span>
+                        <span class="tech-badge px-3 py-1 bg-blue-600/20 text-blue-400 rounded-lg text-sm font-bold border border-blue-600/30">VS Code</span>
+                    </div>
+                </div>
+
+                <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all duration-300">
+                    <div class="p-4 bg-blue-500/20 rounded-xl w-fit mb-6">
+                        <i data-lucide="briefcase" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Office Suite</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-1 bg-green-600/20 text-green-400 rounded-lg text-sm font-bold border border-green-600/30">Excel</span>
+                        <span class="tech-badge px-3 py-1 bg-blue-600/20 text-blue-400 rounded-lg text-sm font-bold border border-blue-600/30">Word</span>
+                        <span class="tech-badge px-3 py-1 bg-orange-600/20 text-orange-400 rounded-lg text-sm font-bold border border-orange-600/30">PowerPoint</span>
+                    </div>
+                </div>
+
+                <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-red-500/50 transition-all duration-300">
+                    <div class="p-4 bg-red-500/20 rounded-xl w-fit mb-6">
+                        <i data-lucide="globe" class="w-8 h-8 text-red-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Langues</h4>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-300">Français</span>
+                            <span class="tech-badge px-3 py-1 bg-green-500/20 text-green-400 rounded-lg text-xs font-bold">Natif</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-300">Anglais</span>
+                            <span class="tech-badge px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg text-xs font-bold">Bilingue</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-300">Wolof</span>
+                            <span class="tech-badge px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-lg text-xs font-bold">Natif</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="parcours" class="py-32 bg-navy-900/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="reveal-text text-accent-gold font-bold uppercase tracking-widest text-sm mb-4">Trajectoire</h2>
+                <h3 class="reveal-text text-5xl md:text-7xl font-display font-black text-white mb-6">Mon Parcours</h3>
+            </div>
+
+            <div class="max-w-4xl mx-auto relative">
+                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-orange via-accent-gold to-transparent"></div>
+
+                <div class="space-y-12">
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 top-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-orange to-red-600 flex items-center justify-center text-white font-bold shadow-2xl shadow-orange-500/50">
+                            2025
+                        </div>
+                        <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-accent-orange/50 transition-all duration-300">
+                            <h4 class="text-2xl font-bold text-white mb-2">Fondateur & Développeur Fullstack</h4>
+                            <p class="text-accent-orange font-semibold mb-4">Confort Immo Archi • Stage Mairie</p>
+                            <p class="text-slate-300 leading-relaxed">
+                                Création et déploiement de solutions logicielles en production. Gestion complète du cycle de développement, de la conception à la maintenance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 top-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-gold to-yellow-600 flex items-center justify-center text-navy-950 font-bold shadow-2xl shadow-yellow-500/50">
+                            2024
+                        </div>
+                        <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-accent-gold/50 transition-all duration-300">
+                            <h4 class="text-2xl font-bold text-white mb-2">Licence 2 Économie Numérique</h4>
+                            <p class="text-accent-gold font-semibold mb-4">UCAD / IPP</p>
+                            <p class="text-slate-300 leading-relaxed">
+                                Formation en développement technologique et digitalisation des affaires. Spécialisation dans l'économie numérique et l'entrepreneuriat.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 top-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white font-bold shadow-2xl">
+                            2023
+                        </div>
+                        <div class="card-3d glass-effect p-8 rounded-2xl border border-white/10 hover:border-slate-500/50 transition-all duration-300">
+                            <h4 class="text-2xl font-bold text-white mb-2">Baccalauréat S2 • Certification Python</h4>
+                            <p class="text-slate-400 font-semibold mb-4">Mention Assez Bien • Coursera</p>
+                            <p class="text-slate-300 leading-relaxed">
+                                Obtention du baccalauréat série scientifique. Début de l'apprentissage autodidacte en programmation avec certification Python.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 relative overflow-hidden">
+        <div class="hero-blob" style="width: 600px; height: 600px; background: #ff6b35; top: -200px; left: -200px;"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="reveal-text text-5xl md:text-7xl font-display font-black text-white mb-8">
+                    Prêt à transformer<br>votre <span class="text-gradient">idée</span> en <span class="text-gradient">réalité</span> ?
+                </h2>
+                <p class="reveal-text text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
+                    Je suis disponible pour des projets freelance, des stages ou des opportunités d'emploi. Discutons de votre prochain projet.
+                </p>
+                <div class="reveal-text flex flex-wrap justify-center gap-6">
+                    <a href="mailto:dionedjibril33@gmail.com" class="magnetic-btn px-10 py-5 bg-gradient-to-r from-accent-orange to-red-600 rounded-full text-white text-lg font-bold hover:shadow-2xl hover:shadow-orange-500/50 transition-all flex items-center gap-3">
+                        <i data-lucide="mail" class="w-6 h-6"></i> dionedjibril33@gmail.com
+                    </a>
+                    <a href="tel:+221765797912" class="magnetic-btn px-10 py-5 glass-effect border border-white/20 text-white rounded-full text-lg font-bold hover:bg-white/10 transition-all flex items-center gap-3">
+                        <i data-lucide="phone" class="w-6 h-6"></i> +221 76 579 79 12
+                    </a>
+                </div>
+
+                <div class="reveal-text mt-16 p-8 glass-effect rounded-2xl border border-white/10 inline-block">
+                    <p class="text-slate-400 mb-4">Télécharger mon CV complet</p>
+                    <a href="/CV Djibril Dione .pdf" download class="magnetic-btn px-8 py-4 bg-white text-navy-950 rounded-xl font-bold hover:bg-slate-100 transition-all inline-flex items-center gap-3">
+                        <i data-lucide="file-text" class="w-5 h-5"></i> CV Djibril DIONE.pdf
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 bg-navy-950/50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-500 text-sm">© 2025 Djibril DIONE. Développé avec passion.</p>
+                <div class="flex items-center gap-6">
+                    <a href="mailto:dionedjibril33@gmail.com" class="text-slate-400 hover:text-accent-orange transition-colors">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </a>
+                    <a href="tel:+221765797912" class="text-slate-400 hover:text-accent-orange transition-colors">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.reveal-text').forEach(elem => {
+            gsap.from(elem, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-counter').forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    updateCounter();
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(counter);
+        });
+
+        const marqueeContent = document.querySelector('.marquee-content');
+        const clone = marqueeContent.cloneNode(true);
+        marqueeContent.parentElement.appendChild(clone);
+
+        gsap.to('.marquee-content', {
+            x: '-100%',
+            duration: 30,
+            ease: 'none',
+            repeat: -1
+        });
+
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', e => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('py-3', 'shadow-2xl');
+                navbar.classList.remove('py-5');
+            } else {
+                navbar.classList.add('py-5');
+                navbar.classList.remove('py-3', 'shadow-2xl');
+            }
+        });
+
+        gsap.to('.parallax-section', {
+            y: (i, target) => -ScrollTrigger.maxScroll(window) * target.dataset.speed,
+            ease: 'none',
+            scrollTrigger: {
+                start: 0,
+                end: 'max',
+                invalidateOnRefresh: true,
+                scrub: 0
+            }
+        });
+    </script>
+</body>
+</html>

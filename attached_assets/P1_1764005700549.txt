@@ -1,0 +1,456 @@
+P1:
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Djibril Dione - Full-Stack Engineer Premium</title>
+    <!-- Chargement Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Polices Poppins (Titres) et Inter (Corps) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- GSAP et ScrollTrigger pour les animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* Configuration de la palette de couleurs et des polices */
+        :root {
+            --color-primary: #080A0F; /* Noir Profond */
+            --color-surface: #1A202C; /* Gris Foncé */
+            --color-accent: #FFC72C; /* Jaune-Or Vif */
+            --color-text-main: #E2E8F0; /* Blanc Cassé */
+            --color-text-secondary: #A0AEC0; /* Gris Clair */
+        }
+
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--color-primary);
+            color: var(--color-text-main);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Classe pour le Glassmorphism subtil sur les cartes */
+        .glass-card {
+            background-color: rgba(26, 32, 44, 0.4); /* Surface avec opacité */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 199, 44, 0.1); /* Bordure d'accent très subtile */
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .glass-card:hover {
+            box-shadow: 0 0 40px rgba(255, 199, 44, 0.2); /* Halo d'accent */
+            transform: translateY(-5px);
+        }
+
+        /* Style pour les badges de stack technique */
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.6rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500; /* font-medium */
+            border-radius: 9999px; /* rounded-full */
+            background-color: var(--color-surface);
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-surface);
+            transition: all 0.2s;
+        }
+        
+        .tech-badge:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            cursor: pointer;
+        }
+
+        /* Timeline spécifique */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem; /* Espace pour la ligne verticale */
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--color-surface);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item-dot {
+            position: absolute;
+            left: 0.2rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            border: 3px solid var(--color-primary);
+            z-index: 10;
+        }
+
+    </style>
+</head>
+
+<body class="font-inter">
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 p-4 glass-card shadow-lg">
+        <nav class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="font-poppins text-2xl font-extrabold text-white">
+                <span class="text-white">D.</span><span style="color:var(--color-accent)">DIONE</span>
+            </h1>
+            <ul class="hidden md:flex space-x-8 font-medium">
+                <li><a href="#projets" class="hover:text-amber-400 transition">Projets</a></li>
+                <li><a href="#stack" class="hover:text-amber-400 transition">Stack</a></li>
+                <li><a href="#parcours" class="hover:text-amber-400 transition">Parcours</a></li>
+                <li><a href="#contact" class="px-4 py-2 rounded-full bg-amber-500 text-black font-semibold hover:bg-amber-400 transition">Contact</a></li>
+            </ul>
+            <button class="md:hidden text-2xl text-white" aria-label="Menu de navigation mobile">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 sm:p-8 lg:p-12">
+
+        <!-- 1. Section Hero (Impact et Storytelling) -->
+        <section id="hero" class="pt-24 pb-32 text-center">
+            <p class="text-lg text-amber-500 font-poppins font-medium mb-3 opacity-0 hero-el">
+                🚀 Ingénieur Full-Stack | Sénégal Tech Fusion
+            </p>
+            <h2 class="font-poppins text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-white mb-6 hero-el opacity-0" aria-label="Développeur Full-Stack, je construis des solutions web performantes et évolutives.">
+                Building <span style="color:var(--color-accent)">High-Performance</span>,<br class="hidden sm:block"> Scalable Solutions.
+            </h2>
+            <p class="text-xl max-w-3xl mx-auto text-gray-400 mb-10 hero-el opacity-0">
+                Driven by a passion for optimized logic, I transform complex business requirements into elegant, robust, and performant web applications with a focus on real-world impact.
+            </p>
+            <div class="space-x-4 hero-el opacity-0">
+                <a href="#projets" class="px-8 py-3 bg-amber-500 text-black font-bold rounded-lg shadow-lg hover:bg-amber-400 transition">
+                    Voir les Projets <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#contact" class="px-8 py-3 border border-amber-500 text-amber-500 font-bold rounded-lg hover:bg-amber-500 hover:text-black transition">
+                    Me Contacter
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Section Statistiques (Impact) -->
+        <section id="stats" class="py-16 text-center">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="stat-item">
+                    <p class="font-poppins text-4xl font-bold text-amber-500" data-target="3">0+</p>
+                    <p class="text-gray-400 mt-1">Années d'Expérience</p>
+                </div>
+                <div class="stat-item">
+                    <p class="font-poppins text-4xl font-bold text-amber-500" data-target="10">0+</p>
+                    <p class="text-gray-400 mt-1">Projets Déployés</p>
+                </div>
+                <div class="stat-item">
+                    <p class="font-poppins text-4xl font-bold text-amber-500" data-target="100">0%</p>
+                    <p class="text-gray-400 mt-1">Code Testé (Cible)</p>
+                </div>
+                <div class="stat-item">
+                    <p class="font-poppins text-4xl font-bold text-amber-500" data-target="8">0</p>
+                    <p class="text-gray-400 mt-1">Technologies Maîtrisées</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. Section Projets -->
+        <section id="projets" class="py-20">
+            <h2 class="font-poppins text-4xl font-extrabold text-white mb-10 border-b pb-4 border-gray-700">Projets Récents</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <!-- Projet 1: Gestion de Courriers -->
+                <div class="glass-card p-6 rounded-xl project-card opacity-0">
+                    <h3 class="font-poppins text-2xl font-bold text-amber-400 mb-2">Système de Gestion Administrative</h3>
+                    <p class="text-gray-400 mb-4">
+                        Conçu et déployé une application web robuste pour le suivi des courriers (arrivées/départs), réduisant le temps de traitement des documents de **30%** et améliorant l'intégrité des données au sein de l'administration.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <span class="tech-badge"><i class="fab fa-react mr-2"></i> React</span>
+                        <span class="tech-badge"><i class="fas fa-database mr-2"></i> Firestore</span>
+                        <span class="tech-badge"><i class="fab fa-node-js mr-2"></i> Node.js</span>
+                    </div>
+                    <div class="mt-4 space-x-4">
+                        <a href="#" class="text-white hover:text-amber-500 font-medium transition" aria-label="Voir le projet de gestion administrative">
+                            Voir le Live <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-white transition" aria-label="Voir le code source du projet">
+                            Code Source <i class="fab fa-github ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projet 2: Portfolio Next.js/MERN (Exemple) -->
+                <div class="glass-card p-6 rounded-xl project-card opacity-0">
+                    <h3 class="font-poppins text-2xl font-bold text-amber-400 mb-2">Plateforme de Contenu Dynamique</h3>
+                    <p class="text-gray-400 mb-4">
+                        Développement d'une plateforme avec Next.js et MongoDB pour la publication d'articles techniques. Architecture Serverless optimisée pour un score de performance Lighthouse de 95+.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge"><i class="fas fa-leaf mr-2"></i> MongoDB</span>
+                        <span class="tech-badge"><i class="fab fa-aws mr-2"></i> Vercel/AWS</span>
+                    </div>
+                    <div class="mt-4 space-x-4">
+                        <a href="#" class="text-white hover:text-amber-500 font-medium transition" aria-label="Voir la plateforme de contenu dynamique">
+                            Voir le Live <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-white transition" aria-label="Voir le code source du projet">
+                            Code Source <i class="fab fa-github ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Section Stack Technique (Interactive) -->
+        <section id="stack" class="py-20">
+            <h2 class="font-poppins text-4xl font-extrabold text-white mb-10 border-b pb-4 border-gray-700">Maîtrise Technique (Stack)</h2>
+            <p class="text-gray-400 mb-10">
+                Une sélection des technologies avec lesquelles je construis des solutions robustes et performantes.
+            </p>
+            <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Exemple de Carte de Stack (Utiliser SVG si possible) -->
+                <div class="text-center p-4 glass-card rounded-xl opacity-0 stack-item">
+                    <i class="fab fa-react text-4xl" style="color:#61DAFB;" aria-label="Icône React"></i>
+                    <p class="mt-2 text-sm font-medium">React / Next.js</p>
+                </div>
+                <div class="text-center p-4 glass-card rounded-xl opacity-0 stack-item">
+                    <i class="fab fa-node-js text-4xl" style="color:#339933;" aria-label="Icône Node.js"></i>
+                    <p class="mt-2 text-sm font-medium">Node / Express</p>
+                </div>
+                <div class="text-center p-4 glass-card rounded-xl opacity-0 stack-item">
+                    <i class="fab fa-js text-4xl" style="color:#F7DF1E;" aria-label="Icône JavaScript"></i>
+                    <p class="mt-2 text-sm font-medium">JavaScript / TS</p>
+                </div>
+                <div class="text-center p-4 glass-card rounded-xl opacity-0 stack-item">
+                    <i class="fab fa-html5 text-4xl" style="color:#E34F26;" aria-label="Icône HTML5"></i>
+                    <p class="mt-2 text-sm font-medium">HTML / Tailwind</p>
+                </div>
+                <div class="text-center p-4 glass-card rounded-xl opacity-0 stack-item">
+                    <i class="fas fa-database text-4xl" style="color:#4285F4;" aria-label="Icône Firestore"></i>
+                    <p class="mt-2 text-sm font-medium">Firebase / Firestore</p>
+                </div>
+                <div class="text-center p-4 glass-card rounded-xl opacity-0 stack-item">
+                    <i class="fab fa-git-alt text-4xl" style="color:#F05032;" aria-label="Icône Git"></i>
+                    <p class="mt-2 text-sm font-medium">Git / GitHub</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 5. Section Parcours (Timeline Animée) -->
+        <section id="parcours" class="py-20">
+            <h2 class="font-poppins text-4xl font-extrabold text-white mb-10 border-b pb-4 border-gray-700">Mon Parcours & Évolution</h2>
+            <div class="timeline max-w-3xl mx-auto mt-16">
+
+                <!-- Item 1: Expérience Pro/Sénior -->
+                <div class="timeline-item opacity-0">
+                    <div class="timeline-item-dot"></div>
+                    <div class="pl-8">
+                        <p class="text-sm font-semibold text-gray-500 mb-1">2023 - Aujourd'hui</p>
+                        <h3 class="font-poppins text-2xl font-bold text-amber-400">Développeur Full-Stack (Freelance/Startup)</h3>
+                        <p class="text-white mt-1 mb-2">**Résultats:** Amélioration de la scalabilité des APIs REST et mise en place de processus CI/CD. J'ai converti l'expertise académique en solutions business concrètes.</p>
+                        <ul class="list-disc ml-5 text-gray-400 text-sm">
+                            <li>Optimisation des performances backend (Node.js/Express) de 40%.</li>
+                            <li>Déploiement de 3 applications web complètes pour PMEs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 2: Diplôme/Formation -->
+                <div class="timeline-item opacity-0">
+                    <div class="timeline-item-dot"></div>
+                    <div class="pl-8">
+                        <p class="text-sm font-semibold text-gray-500 mb-1">2021 - 2023</p>
+                        <h3 class="font-poppins text-2xl font-bold text-white">Licence en Informatique Appliquée</h3>
+                        <p class="text-gray-400 mt-1 mb-2">**Compétence Acquise:** Maîtrise des algorithmes et des structures de données (C/Python) qui est la base de mes solutions performantes d'aujourd'hui.</p>
+                        <p class="text-sm text-gray-500">Université [Nom de l'Université, Ville]</p>
+                    </div>
+                </div>
+                
+                <!-- Item 3: Fondations (Math/Logique) -->
+                <div class="timeline-item opacity-0" style="padding-bottom: 0;">
+                    <div class="timeline-item-dot"></div>
+                    <div class="pl-8">
+                        <p class="text-sm font-semibold text-gray-500 mb-1">Avant 2021</p>
+                        <h3 class="font-poppins text-2xl font-bold text-white">Excellence Académique (Mathématiques)</h3>
+                        <p class="text-gray-400 mt-1 mb-2">**Mon Why:** La rigueur et la logique des mathématiques (Prix Alal Ya Ndira) sont les fondations de ma capacité à écrire du code propre et efficace.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. Section Contact -->
+        <section id="contact" class="py-20">
+            <h2 class="font-poppins text-4xl font-extrabold text-white mb-6 text-center">Parlons de votre Prochain Projet</h2>
+            <p class="text-xl text-gray-400 mb-10 text-center max-w-2xl mx-auto">
+                Je suis actuellement ouvert à de nouvelles opportunités en Full-Stack ou en consulting technique. Envoyez-moi un message, et je vous répondrai dans les 24 heures.
+            </p>
+            
+            <div class="max-w-xl mx-auto glass-card p-8 rounded-xl">
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">Nom Complet</label>
+                        <input type="text" id="name" name="name" required
+                               class="mt-1 block w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:ring-amber-500 focus:border-amber-500"
+                               aria-required="true" aria-label="Champ de saisie pour votre nom complet">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Adresse E-mail</label>
+                        <input type="email" id="email" name="email" required
+                               class="mt-1 block w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:ring-amber-500 focus:border-amber-500"
+                               aria-required="true" aria-label="Champ de saisie pour votre adresse e-mail">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300">Votre Message</label>
+                        <textarea id="message" name="message" rows="4" required
+                                  class="mt-1 block w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:ring-amber-500 focus:border-amber-500"
+                                  aria-required="true" aria-label="Champ de saisie pour votre message"></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full px-5 py-3 text-lg font-bold rounded-lg bg-amber-500 text-black hover:bg-amber-400 transition shadow-lg">
+                        Envoyer le Message
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-gray-700 text-center">
+                    <p class="text-gray-400 mb-3">Retrouvez-moi sur les réseaux :</p>
+                    <div class="space-x-6 text-3xl">
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-amber-500 transition" aria-label="Lien vers mon profil GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-amber-500 transition" aria-label="Lien vers mon profil LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:votre.email@example.com" class="text-gray-400 hover:text-amber-500 transition" aria-label="M'envoyer un e-mail">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 py-8 border-t border-gray-800 text-center text-sm text-gray-500">
+        <p>Conçu et développé par Djibril Dione. Inspiré par l'excellence technique et l'innovation Africa Tech.</p>
+        <p class="mt-2">© 2024 - Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Animation Hero Load (Séquence)
+            const heroTimeline = gsap.timeline();
+            heroTimeline
+                .from(".hero-el", {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.6,
+                    stagger: 0.2, // Délai entre les éléments
+                    ease: "power2.out"
+                }, 0.5) // Démarre 0.5s après le chargement
+
+            // 2. Animation ScrollTrigger pour les Sections (Cartes Projets)
+            gsap.from(".project-card", {
+                opacity: 0,
+                y: 50,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: "#projets",
+                    start: "top 75%", // Commence l'animation quand la section est à 75% du viewport
+                }
+            });
+            
+            // 3. Animation ScrollTrigger pour les Items de Stack
+            gsap.from(".stack-item", {
+                opacity: 0,
+                scale: 0.8,
+                stagger: 0.1,
+                duration: 0.5,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: "#stack",
+                    start: "top 80%",
+                }
+            });
+
+            // 4. Animation ScrollTrigger pour la Timeline
+            gsap.from(".timeline-item", {
+                opacity: 0,
+                y: 30,
+                stagger: 0.4,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".timeline",
+                    start: "top 85%",
+                }
+            });
+
+            // 5. Animation de Comptage des Statistiques
+            const statItems = document.querySelectorAll('.stat-item p[data-target]');
+            statItems.forEach(item => {
+                const targetValue = parseInt(item.getAttribute('data-target'));
+                const isPercentage = item.textContent.includes('%');
+                const isPlus = item.textContent.includes('+');
+
+                // Utilisation de ScrollTrigger pour démarrer le comptage
+                ScrollTrigger.create({
+                    trigger: item,
+                    start: "top 85%",
+                    onEnter: () => {
+                        gsap.to(item, {
+                            duration: 2,
+                            // Utilisation d'un objet proxy pour animer la valeur
+                            onUpdate: function() {
+                                const value = Math.floor(this.targets()[0].innerHTML);
+                                let display = value.toString();
+                                
+                                // Ajout des suffixes
+                                if (isPercentage) {
+                                    display += '%';
+                                } else if (isPlus) {
+                                    display += '+';
+                                }
+                                
+                                item.textContent = display;
+                            },
+                            // Remplacer l'animation par la valeur cible
+                            innerHTML: targetValue,
+                            ease: "power1.out",
+                            snap: { innerHTML: 1 } // S'assurer que le nombre est entier
+                        });
+                    },
+                    once: true // Ne s'exécute qu'une seule fois
+                });
+            });
+
+
+        });
+    </script>
+</body>
+</html>

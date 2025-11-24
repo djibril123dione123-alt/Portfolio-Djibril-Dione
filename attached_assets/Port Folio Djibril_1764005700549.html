@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Djibril DIONE | Portfolio Premium</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#020617', // Fond ultra sombre
+                            900: '#0A1F44', // Votre Bleu Marque
+                            800: '#112953',
+                        },
+                        accent: {
+                            blue: '#2D9CDB', // Bleu vif
+                            gold: '#C9A86A', // Or
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'cursor': 'cursor .75s step-end infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        cursor: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Advanced */
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #2D9CDB 0%, #C9A86A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 3D Card Effect */
+        .tilt-card {
+            transition: transform 0.1s ease;
+            transform-style: preserve-3d;
+        }
+        
+        /* Macbook CSS Frame */
+        .macbook {
+            position: relative;
+            background: #1a1a1a;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid #333;
+            box-shadow: inset 0 0 0 2px #000;
+        }
+        .macbook-screen {
+            position: relative;
+            background: #000;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+            margin: 2%;
+            aspect-ratio: 16/10;
+        }
+        .macbook-base {
+            background: #2a2a2a;
+            height: 12px;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+        .macbook-base::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15%;
+            height: 4px;
+            background: #1a1a1a;
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2D9CDB; }
+
+        /* Print Override */
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+            .glass-panel { border: none !important; background: none !important; box-shadow: none !important; color: black !important; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent-blue selection:text-white">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 no-print" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-display font-bold tracking-tight group">
+                DJIBRIL<span class="text-accent-blue group-hover:text-accent-gold transition-colors">.DIONE</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#projets" class="hover:text-white transition-colors">Projets</a>
+                <a href="#mairie" class="hover:text-white transition-colors">Cas Mairie</a>
+                <a href="#timeline" class="hover:text-white transition-colors">Parcours</a>
+                <a href="#cv" class="hover:text-white transition-colors">CV</a>
+            </div>
+
+            <a href="mailto:dionedjibril33@gmail.com" class="px-5 py-2.5 bg-gradient-to-r from-accent-blue to-blue-600 rounded-full text-white text-sm font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all transform hover:-translate-y-0.5">
+                Me contacter
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-navy-950">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent-blue/10 rounded-full blur-[120px] animate-float"></div>
+            <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-accent-gold/5 rounded-full blur-[120px] animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+        </div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="space-y-8">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 text-accent-gold text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-accent-gold animate-pulse"></span>
+                    Open to Work
+                </div>
+
+                <!-- Main Title with Typing Effect -->
+                <h1 class="text-5xl lg:text-7xl font-display font-bold leading-[1.1]">
+                    Je suis <br>
+                    <span id="typing-text" class="text-gradient">Développeur</span><span class="animate-cursor text-accent-blue">|</span>
+                </h1>
+
+                <p class="text-lg text-slate-400 max-w-xl leading-relaxed">
+                    Étudiant en <strong>Économie Numérique</strong> et expert technique. Je transforme des problèmes complexes (administratifs, immobiliers) en solutions digitales simples et élégantes.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projets" class="px-8 py-4 bg-white text-navy-950 rounded-full font-bold hover:bg-slate-200 transition-all flex items-center gap-2">
+                        <i data-lucide="folder-open" class="w-5 h-5"></i> Voir mes projets
+                    </a>
+                    <a href="#cv" class="px-8 py-4 bg-navy-900 border border-slate-700 text-white rounded-full font-bold hover:bg-navy-800 transition-all flex items-center gap-2">
+                        <i data-lucide="download" class="w-5 h-5"></i> CV complet
+                    </a>
+                </div>
+
+                <!-- Social Proof -->
+                <div class="pt-8 border-t border-slate-800/50 flex items-center gap-6">
+                    <div class="flex -space-x-3">
+                        <!-- Remplacez par les vraies images si dispo, sinon avatars génériques -->
+                        <img src="https://ui-avatars.com/api/?name=Mairie&background=2D9CDB&color=fff" class="w-10 h-10 rounded-full border-2 border-navy-950" alt="Mairie">
+                        <img src="https://ui-avatars.com/api/?name=Agence&background=C9A86A&color=fff" class="w-10 h-10 rounded-full border-2 border-navy-950" alt="Agence">
+                        <div class="w-10 h-10 rounded-full border-2 border-navy-950 bg-slate-800 flex items-center justify-center text-xs font-bold">+2</div>
+                    </div>
+                    <div class="text-sm">
+                        <p class="text-white font-bold">Projets livrés</p>
+                        <p class="text-slate-500">Mairie de Ouakam, Agences Immo...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual (3D Floating Card) -->
+            <div class="hidden lg:block relative perspective-1000">
+                <div class="tilt-card relative z-20 bg-gradient-to-br from-slate-800 to-navy-900 rounded-2xl p-1 border border-slate-700 shadow-2xl">
+                    <img 
+                        src="https://placehold.co/600x600/0A1F44/C9A86A?text=Djibril+DIONE" 
+                        alt="Djibril DIONE" 
+                        class="rounded-xl w-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                    >
+                    <!-- Floating Tag -->
+                    <div class="absolute -bottom-6 -right-6 bg-white text-navy-950 p-4 rounded-xl shadow-xl animate-float" style="animation-delay: 1s;">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-accent-blue/10 rounded-lg text-accent-blue">
+                                <i data-lucide="code-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase">Stack</p>
+                                <p class="font-bold">Fullstack Dev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative Circle -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-dashed border-slate-700 rounded-full animate-[spin_60s_linear_infinite] -z-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFINITE MARQUEE (TECH STACK) -->
+    <section class="py-10 border-y border-slate-800/50 bg-navy-900/50 overflow-hidden">
+        <div class="flex w-[200%] animate-marquee gap-16 items-center">
+            <!-- Content duplicated for seamless loop -->
+            <div class="flex gap-16 items-center whitespace-nowrap text-slate-400 font-display font-bold text-xl uppercase tracking-widest">
+                <span>React</span> <span class="text-accent-blue">•</span>
+                <span>TypeScript</span> <span class="text-accent-blue">•</span>
+                <span>Tailwind CSS</span> <span class="text-accent-blue">•</span>
+                <span>Supabase</span> <span class="text-accent-blue">•</span>
+                <span>PostgreSQL</span> <span class="text-accent-blue">•</span>
+                <span>Microsoft Access</span> <span class="text-accent-blue">•</span>
+                <span>Python</span> <span class="text-accent-blue">•</span>
+                <span>Vite</span> <span class="text-accent-blue">•</span>
+                <span>Git</span> <span class="text-accent-blue">•</span>
+                <!-- Duplicate -->
+                <span>React</span> <span class="text-accent-blue">•</span>
+                <span>TypeScript</span> <span class="text-accent-blue">•</span>
+                <span>Tailwind CSS</span> <span class="text-accent-blue">•</span>
+                <span>Supabase</span> <span class="text-accent-blue">•</span>
+                <span>PostgreSQL</span> <span class="text-accent-blue">•</span>
+                <span>Microsoft Access</span> <span class="text-accent-blue">•</span>
+                <span>Python</span> <span class="text-accent-blue">•</span>
+                <span>Vite</span> <span class="text-accent-blue">•</span>
+                <span>Git</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJET STAR (Confort Immo Archi) -->
+    <section id="projets" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-accent-gold font-bold uppercase tracking-widest text-sm mb-2">Projet Phare</h2>
+                    <h3 class="text-4xl md:text-5xl font-display font-bold text-white">Confort Immo Archi</h3>
+                </div>
+                <div class="flex gap-2">
+                    <span class="px-3 py-1 rounded-full border border-slate-700 text-slate-400 text-xs font-bold">REACT</span>
+                    <span class="px-3 py-1 rounded-full border border-slate-700 text-slate-400 text-xs font-bold">SUPABASE</span>
+                    <span class="px-3 py-1 rounded-full border border-slate-700 text-slate-400 text-xs font-bold">SAAS</span>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Description -->
+                <div class="space-y-8 order-2 lg:order-1">
+                    <div class="glass-panel p-8 rounded-2xl">
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            Une solution SaaS complète déployée pour une agence immobilière réelle. Ce logiciel automatise la gestion locative qui était auparavant faite manuellement.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400"><i data-lucide="check" class="w-4 h-4"></i></div>
+                                <div>
+                                    <strong class="text-white block">Gestion Complète</strong>
+                                    <span class="text-sm text-slate-400">Bailleurs, Locataires, Contrats, Immeubles.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400"><i data-lucide="check" class="w-4 h-4"></i></div>
+                                <div>
+                                    <strong class="text-white block">Automatisation Financière</strong>
+                                    <span class="text-sm text-slate-400">Calcul des commissions, génération de quittances PDF.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="mt-1 p-1 bg-green-500/20 rounded text-green-400"><i data-lucide="check" class="w-4 h-4"></i></div>
+                                <div>
+                                    <strong class="text-white block">Sécurité Maximale</strong>
+                                    <span class="text-sm text-slate-400">Authentification et RLS (Row Level Security) via Supabase.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Visual (Macbook Frame) -->
+                <div class="order-1 lg:order-2 perspective-1000">
+                    <div class="macbook transform transition hover:scale-105 duration-500 hover:rotate-y-6">
+                        <div class="macbook-screen">
+                            <!-- REMPLACEZ CETTE IMAGE PAR UNE CAPTURE DE VOTRE DASHBOARD IMMO -->
+                            <img src="https://placehold.co/1280x800/0A1F44/C9A86A?text=Dashboard+Immobilier+React" alt="Dashboard" class="w-full h-full object-cover">
+                        </div>
+                        <div class="macbook-base"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ETUDE DE CAS MAIRIE (Interactive) -->
+    <section id="mairie" class="py-24 bg-navy-900 relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-accent-blue/5 skew-x-12"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-accent-blue font-bold uppercase tracking-widest text-sm mb-2">Transformation Digitale</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-white">Mairie de Ouakam</h3>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8">
+                <!-- Navigation (Left) -->
+                <div class="lg:col-span-4 space-y-4" id="mairie-nav">
+                    <!-- Généré par JS -->
+                </div>
+
+                <!-- Display (Right) -->
+                <div class="lg:col-span-8">
+                    <div class="glass-panel p-2 rounded-2xl bg-black/40 aspect-video relative overflow-hidden group">
+                        <!-- REMPLACEZ PAR VOS IMAGES REELLES DANS LE JS -->
+                        <img id="mairie-display" src="" class="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" alt="Slide">
+                        
+                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent">
+                            <p id="mairie-caption" class="text-white font-medium text-lg"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1">0%</div>
+                    <div class="text-xs text-slate-500 uppercase">Perte de courrier</div>
+                </div>
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1">3s</div>
+                    <div class="text-xs text-slate-500 uppercase">Temps de recherche</div>
+                </div>
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1">LAN</div>
+                    <div class="text-xs text-slate-500 uppercase">Réseau Déployé</div>
+                </div>
+                <div class="p-6 bg-navy-950 rounded-xl border border-slate-800 text-center">
+                    <div class="text-3xl font-bold text-accent-blue mb-1">100%</div>
+                    <div class="text-xs text-slate-500 uppercase">Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE PARCOURS -->
+    <section id="timeline" class="py-24">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-display font-bold text-white mb-12 text-center">Mon Parcours</h2>
+            
+            <div class="relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12">
+                <!-- Item 2025 -->
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute -left-[9px] top-0 w-5 h-5 rounded-full bg-accent-blue border-4 border-navy-950"></div>
+                    <span class="text-accent-blue font-mono text-sm font-bold mb-2 block">2025</span>
+                    <h3 class="text-xl font-bold text-white">Fondateur Confort Immo Archi & Stage Mairie</h3>
+                    <p class="text-slate-400 mt-2">Déploiement de solutions logicielles concrètes. Gestion complète du cycle de vie logiciel, de la conception au déploiement.</p>
+                </div>
+
+                <!-- Item 2024 -->
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute -left-[9px] top-0 w-5 h-5 rounded-full bg-slate-700 border-4 border-navy-950"></div>
+                    <span class="text-slate-500 font-mono text-sm font-bold mb-2 block">2024</span>
+                    <h3 class="text-xl font-bold text-white">Licence 2 Économie Numérique</h3>
+                    <p class="text-slate-400 mt-2">UCAD / IPP. Spécialisation en développement technologique et digital des affaires.</p>
+                </div>
+
+                <!-- Item 2023 -->
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute -left-[9px] top-0 w-5 h-5 rounded-full bg-slate-700 border-4 border-navy-950"></div>
+                    <span class="text-slate-500 font-mono text-sm font-bold mb-2 block">2023</span>
+                    <h3 class="text-xl font-bold text-white">Baccalauréat S2 & Début Autodidacte</h3>
+                    <p class="text-slate-400 mt-2">Mention Assez Bien. Apprentissage intensif de Python et du Web (HTML/CSS).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV PRINTABLE SECTION -->
+    <section id="cv" class="py-24 bg-white text-slate-900 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 no-print">
+                <div>
+                    <h2 class="text-3xl font-display font-bold text-navy-950">Curriculum Vitae</h2>
+                    <p class="text-slate-500">Format officiel pour recrutement.</p>
+                </div>
+                <button onclick="window.print()" class="mt-4 md:mt-0 px-6 py-3 bg-navy-950 text-white rounded-lg hover:bg-navy-800 transition-colors flex items-center gap-2 shadow-xl">
+                    <i data-lucide="printer" class="w-5 h-5"></i> Imprimer / PDF
+                </button>
+            </div>
+
+            <!-- CV Paper Effect -->
+            <div class="bg-white max-w-[210mm] mx-auto p-[10mm] md:p-[15mm] shadow-2xl print:shadow-none print:p-0 print:max-w-none transform md:rotate-1 transition hover:rotate-0 duration-500">
+                
+                <!-- CV Header -->
+                <div class="border-b-2 border-navy-950 pb-6 mb-6 flex justify-between items-start">
+                    <div>
+                        <h1 class="text-4xl font-bold uppercase tracking-wider text-navy-950">Djibril DIONE</h1>
+                        <p class="text-lg text-accent-blue font-semibold mt-1">Développeur Fullstack & Data</p>
+                    </div>
+                    <div class="text-right text-sm text-slate-600 space-y-1">
+                        <p>+221 76 579 79 12</p>
+                        <p>dionedjibril33@gmail.com</p>
+                        <p>Dakar, Ouakam</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-8">
+                    <!-- Colonne Gauche -->
+                    <div class="col-span-2 space-y-6">
+                        <section>
+                            <h3 class="text-sm font-bold uppercase border-b border-slate-300 pb-1 mb-3 text-navy-900 flex items-center gap-2">
+                                <i data-lucide="user" class="w-4 h-4"></i> Profil
+                            </h3>
+                            <p class="text-sm text-justify leading-relaxed text-slate-700">
+                                Passionné par le développement technologique et l'entrepreneuriat digital, je combine formation académique en économie numérique et expertise pratique en développement web. Ma mission : créer des outils qui digitalisent l'Afrique.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-sm font-bold uppercase border-b border-slate-300 pb-1 mb-3 text-navy-900 flex items-center gap-2">
+                                <i data-lucide="briefcase" class="w-4 h-4"></i> Expériences
+                            </h3>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="font-bold text-navy-950">Fondateur & Développeur</h4>
+                                    <span class="text-xs font-mono bg-slate-100 px-1 rounded">2025</span>
+                                </div>
+                                <div class="text-sm text-accent-blue font-medium mb-1">Confort Immo Archi</div>
+                                <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+                                    <li>Développement Frontend (React/TS) et Backend (Supabase).</li>
+                                    <li>Mise en place RLS et rôles utilisateurs.</li>
+                                    <li>Automatisation des quittances et commissions.</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="font-bold text-navy-950">Stagiaire Digitalisation</h4>
+                                    <span class="text-xs font-mono bg-slate-100 px-1 rounded">2025</span>
+                                </div>
+                                <div class="text-sm text-accent-blue font-medium mb-1">Mairie de Ouakam</div>
+                                <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+                                    <li>Création base de données Access pour le courrier.</li>
+                                    <li>Déploiement réseau local et maintenance parc IT.</li>
+                                    <li>Présentation stratégique au Maire.</li>
+                                </ul>
+                            </div>
+                        </section>
+                        
+                        <section>
+                            <h3 class="text-sm font-bold uppercase border-b border-slate-300 pb-1 mb-3 text-navy-900 flex items-center gap-2">
+                                <i data-lucide="graduation-cap" class="w-4 h-4"></i> Formation
+                            </h3>
+                            <div class="mb-2">
+                                <div class="flex justify-between">
+                                    <span class="font-bold text-sm text-navy-950">Licence 2 Économie Numérique</span>
+                                    <span class="text-xs">2024</span>
+                                </div>
+                                <div class="text-xs text-slate-600">UCAD / IPP</div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="flex justify-between">
+                                    <span class="font-bold text-sm text-navy-950">Baccalauréat S2</span>
+                                    <span class="text-xs">2023</span>
+                                </div>
+                                <div class="text-xs text-slate-600">Cours Anne Marie Javouhey (Mention AB)</div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Colonne Droite -->
+                    <div class="space-y-6">
+                        <section>
+                            <h3 class="text-sm font-bold uppercase border-b border-slate-300 pb-1 mb-3 text-navy-900">Stack</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-navy-50 text-navy-900 px-2 py-1 rounded border border-navy-100">React</span>
+                                <span class="text-xs bg-navy-50 text-navy-900 px-2 py-1 rounded border border-navy-100">TypeScript</span>
+                                <span class="text-xs bg-navy-50 text-navy-900 px-2 py-1 rounded border border-navy-100">Tailwind</span>
+                                <span class="text-xs bg-navy-50 text-navy-900 px-2 py-1 rounded border border-navy-100">Supabase</span>
+                                <span class="text-xs bg-navy-50 text-navy-900 px-2 py-1 rounded border border-navy-100">SQL / Access</span>
+                                <span class="text-xs bg-navy-50 text-navy-900 px-2 py-1 rounded border border-navy-100">Python</span>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3 class="text-sm font-bold uppercase border-b border-slate-300 pb-1 mb-3 text-navy-900">Outils</h3>
+                            <ul class="text-sm text-slate-700 space-y-1">
+                                <li>• Git / GitHub</li>
+                                <li>• VS Code</li>
+                                <li>• Office 365 Expert</li>
+                                <li>• Notion / Trello</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-sm font-bold uppercase border-b border-slate-300 pb-1 mb-3 text-navy-900">Langues</h3>
+                            <ul class="text-sm text-slate-700 space-y-1">
+                                <li class="flex justify-between"><span>Français</span> <b>Natif</b></li>
+                                <li class="flex justify-between"><span>Anglais</span> <b>Bilingue</b></li>
+                                <li class="flex justify-between"><span>Wolof</span> <b>Natif</b></li>
+                            </ul>
+                        </section>
+                        
+                        <section>
+                            <h3 class="text-sm font-bold uppercase border-b border-slate-300 pb-1 mb-3 text-navy-900">Intérêts</h3>
+                            <div class="text-sm text-slate-700">
+                                IA, Stoïcisme, Tech, Football.
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 py-12 border-t border-slate-800 text-center no-print">
+        <p class="text-slate-500 text-sm">&copy; 2025 Djibril DIONE. Designed for impact.</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // 1. Typing Effect
+        const roles = ["Développeur", "Entrepreneur", "Data Analyst", "Problem Solver"];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+
+            const speed = isDeleting ? 50 : 150;
+            setTimeout(type, speed);
+        }
+        type();
+
+        // 2. Mairie Case Study Logic
+        const mairieSlides = [
+            {
+                title: "Le Problème",
+                desc: "Gestion papier inefficace, pertes de documents et lenteur administrative.",
+                img: "https://placehold.co/800x450/112953/FFFFFF?text=Dossiers+Papiers+Desordonnes" // REMPLACER ICI
+            },
+            {
+                title: "La Solution Access",
+                desc: "Interface sur-mesure pour l'enregistrement et le suivi des courriers.",
+                img: "https://placehold.co/800x450/2D9CDB/FFFFFF?text=Interface+Access+Moderne" // REMPLACER ICI
+            },
+            {
+                title: "Automatisation",
+                desc: "Formulaires dynamiques et tri automatique par date et statut.",
+                img: "https://placehold.co/800x450/C9A86A/000000?text=Formulaire+Saisie" // REMPLACER ICI
+            }
+        ];
+
+        let currentSlide = 0;
+        
+        function renderMairieNav() {
+            const container = document.getElementById('mairie-nav');
+            let html = '';
+            mairieSlides.forEach((slide, idx) => {
+                const isActive = idx === currentSlide;
+                html += `
+                    <div onclick="setSlide(${idx})" class="p-4 rounded-xl cursor-pointer transition-all border-l-4 ${isActive ? 'bg-white/5 border-accent-blue' : 'border-transparent hover:bg-white/5 opacity-50'}">
+                        <h4 class="text-white font-bold">${slide.title}</h4>
+                        <p class="text-sm text-slate-400 mt-1">${slide.desc}</p>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function setSlide(idx) {
+            currentSlide = idx;
+            const img = document.getElementById('mairie-display');
+            const cap = document.getElementById('mairie-caption');
+            
+            // Fade out
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = mairieSlides[idx].img;
+                cap.textContent = mairieSlides[idx].title + " - " + mairieSlides[idx].desc;
+                img.style.opacity = '1';
+            }, 300);
+            
+            renderMairieNav();
+        }
+
+        // Init Mairie
+        renderMairieNav();
+        setSlide(0);
+
+        // 3. Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-lg');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2', 'shadow-lg');
+            }
+        });
+        
+        // 4. 3D Tilt Effect on Cards (Vanilla JS)
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max 10deg rotation
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+    </script>
+</body>
+</html>
